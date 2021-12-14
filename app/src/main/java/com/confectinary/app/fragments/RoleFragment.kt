@@ -2,7 +2,6 @@ package com.confectinary.app.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.confectinary.app.R
-import com.confectinary.app.fragments.adapter.TableNameAdapter
+import com.confectinary.app.fragments.adapter.TableNamesAdapter
 import com.confectinary.app.fragments.adapter.entity.TableNames
 
 class RoleFragment : Fragment() {
@@ -21,7 +20,7 @@ class RoleFragment : Fragment() {
     private lateinit var myView: View
     private lateinit var tableNamesList: RecyclerView
     private lateinit var chooseRoleSpinner: Spinner
-    private val tableNamesAdapter = TableNameAdapter(this::startViewTableFragment)
+    private val tableNamesAdapter = TableNamesAdapter(this::startViewTableFragment)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,9 +59,10 @@ class RoleFragment : Fragment() {
 
 
     private fun startViewTableFragment(tableName: String) {
-        val bundle = Bundle()
-        bundle.putString(TableNames.TABLE_NAME_PARAM, tableName)
-        findNavController().navigate(R.id.action_roleFragment_to_viewTableFragment, bundle)
+        when (tableName) {
+            TableNames.TablesEnum.Confectionary.value ->
+                findNavController().navigate(R.id.action_roleFragment_to_viewConfectionariesFragment)
+        }
     }
 
     companion object {

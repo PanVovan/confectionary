@@ -1,17 +1,14 @@
 package com.confectinary.app.fragments.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.confectinary.app.MainActivity
 import com.confectinary.app.R
-import com.confectinary.app.databinding.FragmentRoleBinding
 import com.confectinary.app.fragments.adapter.entity.TableNames
 
-class TableNameAdapter( private val onclick: (String) -> Unit ): RecyclerView.Adapter<TableNameAdapter.ViewHolder>() {
+class TableNamesAdapter(private val onclick: (String) -> Unit ): RecyclerView.Adapter<TableNamesAdapter.ViewHolder>() {
 
     var values = TableNames.adminTableNames
 

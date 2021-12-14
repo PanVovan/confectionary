@@ -13,6 +13,9 @@
         android:theme="@style/Widget.AppCompat.ActionBar.TabBar"
         />
 
+
+
+
     <include layout="@layout/content_main" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

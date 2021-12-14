@@ -8,6 +8,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_table">Add table</string>
+    <string name="confectionary_address">Адрес</string>
+    <string name="confectionary_income">Доход</string>
+    <string name="btn_add_text">Добавить</string>
     <string-array name="roles">
         <item>Админ</item>
         <item>Клиент</item>
