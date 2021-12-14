@@ -6,7 +6,7 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "pastry_and_ingredient",
+    tableName = "recipe",
     foreignKeys = [
         ForeignKey(
             entity = PastryDb::class,
