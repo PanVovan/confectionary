@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.confectinary.app.R
@@ -14,6 +15,7 @@ import com.confectinary.app.databinding.FragmentViewConfectionariesFragmentBindi
 import com.confectinary.app.db.entity.ConfectionaryDb
 import com.confectinary.app.fragments.adapter.ConfectionariesAdapter
 import com.confectinary.app.fragments.adapter.entity.TableNames
+import java.lang.Exception
 
 
 class InsertConfectionaryFragment : Fragment() {
@@ -36,12 +38,20 @@ class InsertConfectionaryFragment : Fragment() {
         with(binding) {
             addItemBtn.setOnClickListener {
                 //Меняем для разных таблиц
-                val newItem = ConfectionaryDb(
-                    0,
-                    confectionaryAddressInput.text.toString(),
-                    confectionaryIncomeInput.text.toString().toInt())
-                Log.i("<---adding:", newItem.toString())
-                //запись newItem
+                try {
+                    val newItem = ConfectionaryDb(
+                        0,
+                        confectionaryAddressInput.text.toString(),
+                        confectionaryIncomeInput.text.toString().toInt()
+                    )
+                    Log.i("<---adding:", newItem.toString())
+                    //запись newItem
+                } catch (e: Exception) {
+                    Toast
+                        .makeText(context, "Данные введены некорректно!", Toast.LENGTH_SHORT)
+                        .show()
+                    e.printStackTrace()
+                }
             }
         }
 
