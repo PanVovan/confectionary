@@ -1,4 +1,4 @@
-package com.confectinary.app.fragments.insertfragments
+package com.confectinary.app.fragments.client
 
 import android.os.Bundle
 import android.util.Log
@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.confectinary.app.R
 import com.confectinary.app.databinding.FragmentInsertClientBinding
+import com.confectinary.app.db.AppDB
 import com.confectinary.app.db.entity.ClientDb
+import com.confectinary.app.extentions.createFactory
 import com.confectinary.app.fragments.adapter.entity.TableNames
 
 
@@ -23,6 +26,10 @@ class InsertClientFragment : Fragment() {
 
     //Меняем для разных таблиц
     private var tableName = TableNames.TablesEnum.Client.value
+
+    private val viewModel: ClientViewModel by viewModels{
+        createFactory(ClientViewModel(context?.let { AppDB.getDatabase(it) }))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +50,8 @@ class InsertClientFragment : Fragment() {
                         clientPatronymicInput.text.toString(),
                         clientPhoneNumber.text.toString()
                     )
+                    viewModel.insert(newItem)
+
                     Log.i("<---adding:", newItem.toString())
                     //запись newItem
                 } catch (e: Exception) {

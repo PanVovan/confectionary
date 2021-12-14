@@ -1,4 +1,4 @@
-package com.confectinary.app.fragments.adapter
+package com.confectinary.app.fragments.confectionary
 
 import android.view.LayoutInflater
 import android.view.View
