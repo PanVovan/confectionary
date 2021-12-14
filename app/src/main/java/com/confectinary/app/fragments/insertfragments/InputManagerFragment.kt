@@ -9,26 +9,29 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.room.ColumnInfo
+import androidx.room.PrimaryKey
 import com.confectinary.app.R
-import com.confectinary.app.databinding.FragmentInsertConfectionaryBinding
-import com.confectinary.app.db.entity.ConfectionaryDb
+import com.confectinary.app.databinding.FragmentInsertClientBinding
+import com.confectinary.app.databinding.FragmentInsertManagerBinding
+import com.confectinary.app.db.entity.ClientDb
+import com.confectinary.app.db.entity.ManagerDb
 import com.confectinary.app.fragments.adapter.entity.TableNames
 
-
-class InsertConfectionaryFragment : Fragment() {
+class InputManagerFragment : Fragment() {
 
     //Меняем для разных таблиц
-    private var _binding: FragmentInsertConfectionaryBinding? = null
+    private var _binding: FragmentInsertManagerBinding? = null
     private val binding get() = _binding!!
 
     //Меняем для разных таблиц
-    private var tableName = TableNames.TablesEnum.Confectionary.value
+    private var tableName = TableNames.TablesEnum.Manager.value
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentInsertConfectionaryBinding.inflate(inflater, container, false)
+        _binding = FragmentInsertManagerBinding.inflate(inflater, container, false)
 
         (activity as AppCompatActivity).supportActionBar?.title = tableName
 
@@ -36,10 +39,16 @@ class InsertConfectionaryFragment : Fragment() {
             addItemBtn.setOnClickListener {
                 //Меняем для разных таблиц
                 try {
-                    val newItem = ConfectionaryDb(
+
+                    val newItem = ManagerDb(
                         0,
-                        confectionaryAddressInput.text.toString(),
-                        confectionaryIncomeInput.text.toString().toInt()
+                        managerNameInput.text.toString(),
+                        managerSurnameInput.text.toString(),
+                        managerPatronymicInput.text.toString(),
+                        managerPhoneNumber.text.toString(),
+                        managerSalary.text.toString().toInt(),
+                        managerExperience.text.toString().toInt(),
+                        managerSphere.text.toString()
                     )
                     Log.i("<---adding:", newItem.toString())
                     //запись newItem
@@ -48,10 +57,9 @@ class InsertConfectionaryFragment : Fragment() {
                         .makeText(context, "Данные введены некорректно!", Toast.LENGTH_SHORT)
                         .show()
                 }
-
                 findNavController().navigate(
                     //Меняем для разных таблиц
-                    R.id.action_insertConfectionaryFragment_to_viewConfectionariesFragment
+                    R.id.action_inputManagerFragment_to_viewManagerFragment
                 )
             }
         }

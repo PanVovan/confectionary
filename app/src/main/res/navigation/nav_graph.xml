@@ -16,12 +16,15 @@
         <action
             android:id="@+id/action_roleFragment_to_viewClientsFragment"
             app:destination="@id/viewClientsFragment" />
+        <action
+            android:id="@+id/action_roleFragment_to_viewManagerFragment"
+            app:destination="@id/viewManagerFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewConfectionariesFragment"
         android:name="com.confectinary.app.fragments.viewfragments.ViewConfectionariesFragment"
         android:label="fragment_view_confectionaries_fragment"
-        tools:layout="@layout/fragment_view_confectionaries_fragment" >
+        tools:layout="@layout/fragment_view" >
         <argument
             android:name="TABLE_NAME"
             android:defaultValue="Кондитерская"/>
@@ -33,7 +36,11 @@
         android:id="@+id/insertConfectionaryFragment"
         android:name="com.confectinary.app.fragments.insertfragments.InsertConfectionaryFragment"
         android:label="fragment_insert_confectionary"
-        tools:layout="@layout/fragment_insert_confectionary" />
+        tools:layout="@layout/fragment_insert_confectionary" >
+        <action
+            android:id="@+id/action_insertConfectionaryFragment_to_viewConfectionariesFragment"
+            app:destination="@id/viewConfectionariesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/viewClientsFragment"
         android:name="com.confectinary.app.fragments.viewfragments.ViewClientsFragment"
@@ -45,5 +52,25 @@
     <fragment
         android:id="@+id/insertClientFragment"
         android:name="com.confectinary.app.fragments.insertfragments.InsertClientFragment"
-        android:label="InsertClientFragment" />
+        android:label="InsertClientFragment" >
+        <action
+            android:id="@+id/action_insertClientFragment_to_viewClientsFragment"
+            app:destination="@id/viewClientsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewManagerFragment"
+        android:name="com.confectinary.app.fragments.viewfragments.ViewManagerFragment"
+        android:label="ViewManagerFragment" >
+        <action
+            android:id="@+id/action_viewManagerFragment_to_inputManagerFragment"
+            app:destination="@id/inputManagerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inputManagerFragment"
+        android:name="com.confectinary.app.fragments.insertfragments.InputManagerFragment"
+        android:label="InputManagerFragment" >
+        <action
+            android:id="@+id/action_inputManagerFragment_to_viewManagerFragment"
+            app:destination="@id/viewManagerFragment" />
+    </fragment>
 </navigation>

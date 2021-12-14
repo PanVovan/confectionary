@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.confectinary.app.R
 import com.confectinary.app.databinding.FragmentInsertClientBinding
 import com.confectinary.app.db.entity.ClientDb
 import com.confectinary.app.fragments.adapter.entity.TableNames
@@ -20,7 +22,7 @@ class InsertClientFragment : Fragment() {
     private val binding get() = _binding!!
 
     //Меняем для разных таблиц
-    private var tableName = TableNames.TablesEnum.Confectionary.value
+    private var tableName = TableNames.TablesEnum.Client.value
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +50,10 @@ class InsertClientFragment : Fragment() {
                         .makeText(context, "Данные введены некорректно!", Toast.LENGTH_SHORT)
                         .show()
                 }
+                findNavController().navigate(
+                    //Меняем для разных таблиц
+                    R.id.action_insertClientFragment_to_viewClientsFragment
+                )
             }
         }
 
