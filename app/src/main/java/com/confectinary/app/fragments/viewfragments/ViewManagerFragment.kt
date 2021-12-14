@@ -11,11 +11,11 @@ import androidx.navigation.fragment.findNavController
 import com.confectinary.app.R
 import com.confectinary.app.databinding.FragmentViewBinding
 import com.confectinary.app.fragments.adapter.ClientsAdapter
+import com.confectinary.app.fragments.adapter.ManagersAdapter
 import com.confectinary.app.fragments.adapter.entity.TableNames
 
-class ViewClientsFragment : Fragment() {
+class ViewManagerFragment : Fragment() {
 
-    //Меняем для разных таблиц
     private var _binding: FragmentViewBinding? = null
 
     // This property is only valid between onCreateView and
@@ -24,9 +24,9 @@ class ViewClientsFragment : Fragment() {
 
 
     //Меняем для разных таблиц
-    private var tableName = TableNames.TablesEnum.Client.value
+    private var tableName = TableNames.TablesEnum.Manager.value
     //Меняем для разных таблиц
-    private var myAdapter: ClientsAdapter = ClientsAdapter()
+    private var myAdapter: ManagersAdapter = ManagersAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +41,7 @@ class ViewClientsFragment : Fragment() {
             addItem.setOnClickListener {
                 findNavController().navigate(
                     //Меняем для разных таблиц
-                    R.id.action_viewClientsFragment_to_insertClientFragment
+                    R.id.action_viewManagerFragment_to_inputManagerFragment
                 )
             }
         }
