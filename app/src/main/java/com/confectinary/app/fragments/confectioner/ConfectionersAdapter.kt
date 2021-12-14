@@ -1,19 +1,16 @@
-package com.confectinary.app.fragments.adapter
+package com.confectinary.app.fragments.confectioner
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.ColumnInfo
-import androidx.room.PrimaryKey
 import com.confectinary.app.R
-import com.confectinary.app.db.entity.ClientDb
-import com.confectinary.app.db.entity.ManagerDb
+import com.confectinary.app.db.entity.ConfectionerDb
 
-class ManagersAdapter : RecyclerView.Adapter<ManagersAdapter.ViewHolder>() {
+class ConfectionersAdapter : RecyclerView.Adapter<ConfectionersAdapter.ViewHolder>() {
 
-    var values = emptyList<ManagerDb>()
+    var values = emptyList<ConfectionerDb>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -24,25 +21,21 @@ class ManagersAdapter : RecyclerView.Adapter<ManagersAdapter.ViewHolder>() {
 
     }
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
         val firstname = item.firstname
         val lastname = item.lastname
         val patronymic = item.patronymic?:""
-        val phoneNumber = item.phoneNumber
         val salary = item.salary
         val experience = item.experience
-        val sphere = item.sphere
-
+        val rating = item.rating
 
         val displayTest = "Имя: $firstname\n" +
                 "Фамилия: $lastname\n" +
                 "Отчество: $patronymic\n" +
-                "Телефон: $phoneNumber" +
-                "Зарплата: $salary" +
-                "Опыт: $experience" +
-                "Сферы: $sphere"
+                "Зарплата: $salary\n" +
+                "Опыт: $experience\n" +
+                "Рейтинг: $rating"
 
         holder.description.text = displayTest
     }

@@ -31,20 +31,24 @@ class InsertClientFragment : Fragment() {
         createFactory(ClientViewModel(context?.let { AppDB.getDatabase(it) }))
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.title = tableName
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentInsertClientBinding.inflate(inflater, container, false)
 
-        (activity as AppCompatActivity).supportActionBar?.title = tableName
 
         with(binding) {
             addItemBtn.setOnClickListener {
                 //Меняем для разных таблиц
                 try {
                     val newItem = ClientDb(
-                        0,
+                        null,
                         clientNameInput.text.toString(),
                         clientSurnameInput.text.toString(),
                         clientPatronymicInput.text.toString(),
@@ -52,17 +56,15 @@ class InsertClientFragment : Fragment() {
                     )
                     viewModel.insert(newItem)
 
-                    Log.i("<---adding:", newItem.toString())
-                    //запись newItem
+                    findNavController().navigate(
+                        //Меняем для разных таблиц
+                        R.id.action_insertClientFragment_to_viewClientsFragment
+                    )
                 } catch (e: Exception) {
                     Toast
                         .makeText(context, "Данные введены некорректно!", Toast.LENGTH_SHORT)
                         .show()
                 }
-                findNavController().navigate(
-                    //Меняем для разных таблиц
-                    R.id.action_insertClientFragment_to_viewClientsFragment
-                )
             }
         }
 

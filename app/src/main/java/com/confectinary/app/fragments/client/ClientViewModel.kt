@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class ClientViewModel(
     val db: AppDatabase?
 ): ViewModel() {
-    protected val _dataFlow = MutableSharedFlow<List<ClientDb>>()
+    private val _dataFlow = MutableSharedFlow<List<ClientDb>>()
     val dataFlow = _dataFlow.asSharedFlow()
 
     fun loadClients() {
@@ -27,6 +27,4 @@ class ClientViewModel(
         }
         loadClients()
     }
-
-
 }

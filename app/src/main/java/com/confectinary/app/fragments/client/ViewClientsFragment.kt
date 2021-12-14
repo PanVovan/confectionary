@@ -44,8 +44,6 @@ class ViewClientsFragment : Fragment() {
     ): View {
         _binding = FragmentViewBinding.inflate(inflater, container, false)
 
-        (activity as AppCompatActivity).supportActionBar?.title = tableName
-
         with(binding) {
             talbeitemsList.adapter = adapter
             addItem.setOnClickListener {
@@ -75,16 +73,8 @@ class ViewClientsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.title = tableName
         viewModel.loadClients()
-    }
-
-    //будет срабатывать, когда мы создаем или возвращаемся во фрагмент (то есть всегда)
-    @SuppressLint("NotifyDataSetChanged")
-    override fun onStart() {
-        super.onStart()
-        //получаем данные из бд
-//        myAdapter.values = newData
-//        myAdapter.notifyDataSetChanged()
     }
 
 }

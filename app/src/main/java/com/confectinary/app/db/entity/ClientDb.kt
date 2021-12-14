@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey
 data class ClientDb (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "client_id")
-    val clientId: Int,
+    val clientId: Int? = null,
     val firstname: String,
     val lastname: String,
     val patronymic: String?,

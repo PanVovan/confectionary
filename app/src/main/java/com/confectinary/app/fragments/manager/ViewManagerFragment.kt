@@ -1,4 +1,4 @@
-package com.confectinary.app.fragments.viewfragments
+package com.confectinary.app.fragments.manager
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,11 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.confectinary.app.R
 import com.confectinary.app.databinding.FragmentViewBinding
-import com.confectinary.app.fragments.adapter.ManagersAdapter
+import com.confectinary.app.db.AppDB
+import com.confectinary.app.extentions.createFactory
 import com.confectinary.app.fragments.adapter.entity.TableNames
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class ViewManagerFragment : Fragment() {
 
@@ -21,11 +27,14 @@ class ViewManagerFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private val viewModel: ManagerViewModel by viewModels{
+        createFactory(ManagerViewModel(context?.let { AppDB.getDatabase(it) }))
+    }
 
     //Меняем для разных таблиц
     private var tableName = TableNames.TablesEnum.Manager.value
     //Меняем для разных таблиц
-    private var myAdapter: ManagersAdapter = ManagersAdapter()
+    private var adapter: ManagersAdapter = ManagersAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,10 +42,9 @@ class ViewManagerFragment : Fragment() {
     ): View? {
         _binding = FragmentViewBinding.inflate(inflater, container, false)
 
-        (activity as AppCompatActivity).supportActionBar?.title = tableName
 
         with(binding) {
-            talbeitemsList.adapter = myAdapter
+            talbeitemsList.adapter = adapter
             addItem.setOnClickListener {
                 findNavController().navigate(
                     //Меняем для разных таблиц
@@ -48,12 +56,24 @@ class ViewManagerFragment : Fragment() {
         return binding.root
     }
 
-    //будет срабатывать, когда мы создаем или возвращаемся во фрагмент (то есть всегда)
     @SuppressLint("NotifyDataSetChanged")
-    override fun onStart() {
-        super.onStart()
-        //получаем данные из бд
-//        myAdapter.values = newData
-//        myAdapter.notifyDataSetChanged()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.dataFlow
+                .flowWithLifecycle(viewLifecycleOwner.lifecycle)
+                .collectLatest {
+                    adapter.values = it
+                    adapter.notifyDataSetChanged()
+                }
+        }
     }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.title = tableName
+        viewModel.loadManagers()
+    }
+
 }

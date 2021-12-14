@@ -7,10 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.confectinary.app.R
 import com.confectinary.app.databinding.FragmentViewBinding
+import com.confectinary.app.db.AppDB
+import com.confectinary.app.extentions.createFactory
 import com.confectinary.app.fragments.adapter.entity.TableNames
+import com.confectinary.app.fragments.client.ClientViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 class ViewConfectionariesFragment : Fragment() {
@@ -26,7 +34,12 @@ class ViewConfectionariesFragment : Fragment() {
     //Меняем для разных таблиц
     private var tableName = TableNames.TablesEnum.Confectionary.value
     //Меняем для разных таблиц
-    private var myAdapter: ConfectionariesAdapter = ConfectionariesAdapter()
+    private var adapter: ConfectionariesAdapter = ConfectionariesAdapter()
+
+
+    private val viewModel: ConfectionaryViewModel by viewModels{
+        createFactory(ConfectionaryViewModel(context?.let { AppDB.getDatabase(it) }))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,10 +47,9 @@ class ViewConfectionariesFragment : Fragment() {
     ): View? {
         _binding = FragmentViewBinding.inflate(inflater, container, false)
 
-        (activity as AppCompatActivity).supportActionBar?.title = tableName
 
         with(binding) {
-            talbeitemsList.adapter = myAdapter
+            talbeitemsList.adapter = adapter
             addItem.setOnClickListener {
                 findNavController().navigate(
                     //Меняем для разных таблиц
@@ -49,12 +61,23 @@ class ViewConfectionariesFragment : Fragment() {
         return binding.root
     }
 
-    //будет срабатывать, когда мы создаем или возвращаемся во фрагмент (то есть всегда)
     @SuppressLint("NotifyDataSetChanged")
-    override fun onStart() {
-        super.onStart()
-        //получаем данные из бд
-        //myAdapter.values = newData
-        //myAdapter.notifyDataSetChanged()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.dataFlow
+                .flowWithLifecycle(viewLifecycleOwner.lifecycle)
+                .collectLatest {
+                    adapter.values = it
+                    adapter.notifyDataSetChanged()
+                }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.title = tableName
+        viewModel.loadConfectionaries()
     }
 }

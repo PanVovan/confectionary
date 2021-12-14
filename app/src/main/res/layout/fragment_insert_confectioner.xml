@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/manager_name_input"
+        android:id="@+id/confectioner_firstname_input"
         android:hint="Имя"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,8 +17,8 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/manager_surname_input"
-        app:layout_constraintTop_toBottomOf="@id/manager_name_input"
+        android:id="@+id/confectioner_lastname_input"
+        app:layout_constraintTop_toBottomOf="@id/confectioner_firstname_input"
         android:hint="Фамилия"
         android:layout_margin="@dimen/inputform_text_margin"
         android:layout_width="match_parent"
@@ -29,8 +28,8 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/manager_patronymic_input"
-        app:layout_constraintTop_toBottomOf="@id/manager_surname_input"
+        android:id="@+id/confectioner_patronymic_input"
+        app:layout_constraintTop_toBottomOf="@id/confectioner_lastname_input"
         android:hint="Отчество"
         android:layout_margin="@dimen/inputform_text_margin"
         android:layout_width="match_parent"
@@ -40,8 +39,8 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/manager_phone_number"
-        app:layout_constraintTop_toBottomOf="@id/manager_patronymic_input"
+        android:id="@+id/confectioner_salary"
+        app:layout_constraintTop_toBottomOf="@id/confectioner_patronymic_input"
         android:hint="Телефон"
         android:layout_margin="@dimen/inputform_text_margin"
         android:layout_width="match_parent"
@@ -50,20 +49,10 @@
         android:autofillHints="no"
         android:inputType="phone" />
 
-    <EditText
-        android:id="@+id/manager_salary"
-        app:layout_constraintTop_toBottomOf="@id/manager_phone_number"
-        android:hint="Зарплата"
-        android:layout_margin="@dimen/inputform_text_margin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        android:autofillHints="no"
-        android:inputType="number" />
 
     <EditText
-        android:id="@+id/manager_experience"
-        app:layout_constraintTop_toBottomOf="@id/manager_salary"
+        android:id="@+id/confectioner_experience"
+        app:layout_constraintTop_toBottomOf="@id/confectioner_salary"
         android:hint="Опыт"
         android:layout_margin="@dimen/inputform_text_margin"
         android:layout_width="match_parent"
@@ -73,21 +62,22 @@
         android:inputType="number" />
 
     <EditText
-        android:id="@+id/manager_sphere"
-        app:layout_constraintTop_toBottomOf="@id/manager_experience"
-        android:hint="Сфера"
+        android:id="@+id/confectioner_rating"
+        app:layout_constraintTop_toBottomOf="@id/confectioner_experience"
+        android:hint="Рейтинг"
         android:layout_margin="@dimen/inputform_text_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         android:autofillHints="no"
-        android:inputType="text" />
+        android:inputType="number" />
+
 
     <Spinner
         android:id="@+id/choose_confectionarySpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/manager_sphere"
+        app:layout_constraintTop_toBottomOf="@id/confectioner_rating"
         android:layout_margin="@dimen/inputform_text_margin"
         />
 

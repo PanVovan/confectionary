@@ -1,11 +1,16 @@
 package com.confectinary.app.db.dao
 
 import androidx.room.*
+import com.confectinary.app.db.entity.ClientDb
 import com.confectinary.app.db.entity.ManagerDb
+import com.confectinary.app.db.entity.relation.manager_with_confectionary.ConfectionaryAndManagerCrossRef
 import com.confectinary.app.db.entity.relation.manager_with_confectionary.ManagerWithConfectionariesDb
 
 @Dao
 interface ManagerDao {
+
+    @Query("SELECT * FROM manager")
+    suspend fun getManagers(): List<ManagerDb>
 
     @Query("SELECT * FROM manager WHERE manager_id = :managerId")
     suspend fun getManager(managerId: Int): ManagerDb
@@ -23,4 +28,7 @@ interface ManagerDao {
 
     @Insert
     suspend fun insertManager(manager: ManagerDb)
+
+    @Insert
+    suspend fun insertConfectionaryAndManagerCrossRef(confectionaryAndManagerCrossRef: ConfectionaryAndManagerCrossRef)
 }

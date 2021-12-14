@@ -19,19 +19,22 @@
         <action
             android:id="@+id/action_roleFragment_to_viewManagerFragment"
             app:destination="@id/viewManagerFragment" />
+        <action
+            android:id="@+id/action_roleFragment_to_viewConfectionersFragment"
+            app:destination="@id/viewConfectionersFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/viewClientsFragment"
-        android:name="com.confectinary.app.fragments.viewfragments.ViewClientsFragment"
+        android:name="com.confectinary.app.fragments.client.ViewClientsFragment"
         android:label="ViewClientsFragment" >
         <action
             android:id="@+id/action_viewClientsFragment_to_insertClientFragment"
-            app:destination="@id/insertClientFragment"/>
+            app:destination="@id/insertClientFragment" />
     </fragment>
     <fragment
         android:id="@+id/insertClientFragment"
-        android:name="com.confectinary.app.fragments.insertfragments.InsertClientFragment"
+        android:name="com.confectinary.app.fragments.client.InsertClientFragment"
         android:label="InsertClientFragment" >
         <action
             android:id="@+id/action_insertClientFragment_to_viewClientsFragment"
@@ -42,7 +45,7 @@
 
     <fragment
         android:id="@+id/viewManagerFragment"
-        android:name="com.confectinary.app.fragments.viewfragments.ViewManagerFragment"
+        android:name="com.confectinary.app.fragments.manager.ViewManagerFragment"
         android:label="ViewManagerFragment" >
         <action
             android:id="@+id/action_viewManagerFragment_to_inputManagerFragment"
@@ -50,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/inputManagerFragment"
-        android:name="com.confectinary.app.fragments.insertfragments.InputManagerFragment"
+        android:name="com.confectinary.app.fragments.manager.InsertManagerFragment"
         android:label="InputManagerFragment" >
         <action
             android:id="@+id/action_inputManagerFragment_to_viewManagerFragment"
@@ -61,7 +64,7 @@
 
     <fragment
         android:id="@+id/viewConfectionariesFragment"
-        android:name="com.confectinary.app.fragments.viewfragments.ViewConfectionariesFragment"
+        android:name="com.confectinary.app.fragments.confectionary.ViewConfectionariesFragment"
         android:label="fragment_view_confectionaries_fragment"
         tools:layout="@layout/fragment_view" >
         <action
@@ -70,7 +73,7 @@
     </fragment>
     <fragment
         android:id="@+id/insertConfectionaryFragment"
-        android:name="com.confectinary.app.fragments.insertfragments.InsertConfectionaryFragment"
+        android:name="com.confectinary.app.fragments.confectionary.InsertConfectionaryFragment"
         android:label="fragment_insert_confectionary"
         tools:layout="@layout/fragment_insert_confectionary" >
         <action
@@ -79,4 +82,27 @@
             app:popUpTo="@id/roleFragment"
             app:popUpToInclusive="false"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/viewConfectionersFragment"
+        android:name="com.confectinary.app.fragments.confectioner.ViewConfectionersFragment"
+        android:label="ViewConfectionersFragment" >
+        <action
+            android:id="@+id/action_viewConfectionersFragment_to_insertConfectionerFragment"
+            app:destination="@id/insertConfectionerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/insertConfectionerFragment"
+        android:name="com.confectinary.app.fragments.confectioner.InsertConfectionerFragment"
+        android:label="InsertConfectionerFragment" >
+        <action
+            android:id="@+id/action_insertConfectionerFragment_to_viewConfectionersFragment"
+            app:destination="@id/viewConfectionersFragment"
+            app:popUpTo="@id/roleFragment"
+            app:popUpToInclusive="false"/>
+    </fragment>
+
+
+    <!--    app:popUpTo="@id/roleFragment"-->
+<!--    app:popUpToInclusive="false-->
 </navigation>
