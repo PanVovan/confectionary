@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_roleFragment_to_viewConfectionariesFragment"
             app:destination="@id/viewConfectionariesFragment" />
+        <action
+            android:id="@+id/action_roleFragment_to_viewClientsFragment"
+            app:destination="@id/viewClientsFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewConfectionariesFragment"
@@ -31,4 +34,16 @@
         android:name="com.confectinary.app.fragments.insertfragments.InsertConfectionaryFragment"
         android:label="fragment_insert_confectionary"
         tools:layout="@layout/fragment_insert_confectionary" />
+    <fragment
+        android:id="@+id/viewClientsFragment"
+        android:name="com.confectinary.app.fragments.viewfragments.ViewClientsFragment"
+        android:label="ViewClientsFragment" >
+        <action
+            android:id="@+id/action_viewClientsFragment_to_insertClientFragment"
+            app:destination="@id/insertClientFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/insertClientFragment"
+        android:name="com.confectinary.app.fragments.insertfragments.InsertClientFragment"
+        android:label="InsertClientFragment" />
 </navigation>

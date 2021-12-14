@@ -8,8 +8,8 @@
     tools:context=".fragments.insertfragments.InsertConfectionaryFragment">
 
     <EditText
-        android:id="@+id/confectionary_address_input"
-        android:hint="@string/confectionary_address"
+        android:id="@+id/client_name_input"
+        android:hint="Имя"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,18 +19,41 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/confectionary_income_input"
-        app:layout_constraintTop_toBottomOf="@id/confectionary_address_input"
-        android:hint="@string/confectionary_income"
+        android:id="@+id/client_surname_input"
+        app:layout_constraintTop_toBottomOf="@id/client_name_input"
+        android:hint="Фамилия"
+        android:layout_margin="@dimen/inputform_text_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="@dimen/inputform_text_margin"
         android:autofillHints="no"
-        android:inputType="number" />
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/client_patronymic_input"
+        app:layout_constraintTop_toBottomOf="@id/client_surname_input"
+        android:hint="Отчество"
+        android:layout_margin="@dimen/inputform_text_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:autofillHints="no"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/client_phone_number"
+        app:layout_constraintTop_toBottomOf="@id/client_patronymic_input"
+        android:hint="Телефон"
+        android:layout_margin="@dimen/inputform_text_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:autofillHints="no"
+        android:inputType="phone" />
+
 
     <Button
-        app:layout_constraintTop_toBottomOf="@id/confectionary_income_input"
+        app:layout_constraintTop_toBottomOf="@id/client_phone_number"
         android:id="@+id/add_item_btn"
         android:text="@string/btn_add_text"
         android:textSize="12sp"

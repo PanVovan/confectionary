@@ -2,19 +2,18 @@ package com.confectinary.app.fragments.viewfragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.confectinary.app.R
 import com.confectinary.app.databinding.FragmentViewBinding
-import com.confectinary.app.fragments.adapter.ConfectionariesAdapter
+import com.confectinary.app.fragments.adapter.ClientsAdapter
 import com.confectinary.app.fragments.adapter.entity.TableNames
 
-
-class ViewConfectionariesFragment : Fragment() {
+class ViewClientsFragment : Fragment() {
 
     //Меняем для разных таблиц
     private var _binding: FragmentViewBinding? = null
@@ -25,9 +24,9 @@ class ViewConfectionariesFragment : Fragment() {
 
 
     //Меняем для разных таблиц
-    private var tableName = TableNames.TablesEnum.Confectionary.value
+    private var tableName = TableNames.TablesEnum.Client.value
     //Меняем для разных таблиц
-    private var myAdapter: ConfectionariesAdapter = ConfectionariesAdapter()
+    private var myAdapter: ClientsAdapter = ClientsAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +41,7 @@ class ViewConfectionariesFragment : Fragment() {
             addItem.setOnClickListener {
                 findNavController().navigate(
                     //Меняем для разных таблиц
-                    R.id.action_viewConfectionariesFragment_to_insertConfectionaryFragment
+                    R.id.action_viewClientsFragment_to_insertClientFragment
                 )
             }
         }

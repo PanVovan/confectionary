@@ -62,6 +62,8 @@ class RoleFragment : Fragment() {
         when (tableName) {
             TableNames.TablesEnum.Confectionary.value ->
                 findNavController().navigate(R.id.action_roleFragment_to_viewConfectionariesFragment)
+            TableNames.TablesEnum.Client.value ->
+                findNavController().navigate(R.id.action_roleFragment_to_viewClientsFragment)
         }
     }
 
