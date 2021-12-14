@@ -62,9 +62,6 @@ class RoleFragment : Fragment() {
     private fun startViewTableFragment(tableName: String) {
         val bundle = Bundle()
         bundle.putString(TableNames.TABLE_NAME_PARAM, tableName)
-//        requireActivity().supportFragmentManager.beginTransaction()
-//            .replace(R.id.nav_host_fragment_content_main, ViewTableFragment(tableName) )
-//            .commit()
         findNavController().navigate(R.id.action_roleFragment_to_viewTableFragment, bundle)
     }
 

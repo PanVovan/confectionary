@@ -12,6 +12,24 @@ class ConfectionariesAdapter : RecyclerView.Adapter<ConfectionariesAdapter.ViewH
 
     var values = listOf<ConfectionaryDb>(
         ConfectionaryDb(0, "Волгоград, ул. Ленина, 21/1", 100000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
+        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
         ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000)
     )
 

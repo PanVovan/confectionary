@@ -25,6 +25,7 @@
         android:layout_height="match_parent"
         tools:listitem="@layout/item_talbeitem"
         app:layoutManager="LinearLayoutManager"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"/>
 
