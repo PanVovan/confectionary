@@ -10,7 +10,7 @@ import com.confectinary.app.db.entity.ConfectionaryDb
 
 class ConfectionariesAdapter : RecyclerView.Adapter<ConfectionariesAdapter.ViewHolder>() {
 
-    val values = listOf(
+    var values = listOf(
         ConfectionaryDb(0, "Волгоград, ул. Ленина, 21/1", 100000),
         ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
         ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),

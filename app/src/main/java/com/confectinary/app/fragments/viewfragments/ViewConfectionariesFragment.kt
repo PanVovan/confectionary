@@ -1,5 +1,6 @@
 package com.confectinary.app.fragments.viewfragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -47,5 +48,14 @@ class ViewConfectionariesFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    //будет срабатывать, когда мы создаем или возвращаемся во фрагмент (то есть всегда)
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onStart() {
+        super.onStart()
+        //получаем данные из бд
+        //myAdapter.values = newData
+        //myAdapter.notifyDataSetChanged()
     }
 }
