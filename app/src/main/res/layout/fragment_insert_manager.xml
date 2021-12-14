@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.insertfragments.InsertConfectionaryFragment">
+    tools:context=".fragments.confectionary.InsertConfectionaryFragment">
 
     <EditText
         android:id="@+id/manager_name_input"
@@ -42,14 +42,16 @@
 
     <EditText
         android:id="@+id/manager_phone_number"
-        app:layout_constraintTop_toBottomOf="@id/manager_patronymic_input"
-        android:hint="Телефон"
-        android:layout_margin="@dimen/inputform_text_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="@dimen/inputform_text_margin"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="104dp"
         android:autofillHints="no"
-        android:inputType="phone" />
+        android:hint="Телефон"
+        android:inputType="phone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/manager_patronymic_input" />
 
     <EditText
         android:id="@+id/manager_salary"
@@ -75,25 +77,27 @@
 
     <EditText
         android:id="@+id/manager_sphere"
-        app:layout_constraintTop_toBottomOf="@id/manager_experience"
-        android:hint="Сфера"
-        android:layout_margin="@dimen/inputform_text_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="@dimen/inputform_text_margin"
         android:autofillHints="no"
-        android:inputType="text" />
+        android:hint="Сфера"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/manager_experience" />
 
 
     <Button
-        app:layout_constraintTop_toBottomOf="@id/manager_phone_number"
         android:id="@+id/add_item_btn"
-        android:text="@string/btn_add_text"
-        android:textSize="12sp"
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_margin="40dp"
+        android:layout_marginTop="186dp"
+        android:text="@string/btn_add_text"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.553"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/manager_sphere" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

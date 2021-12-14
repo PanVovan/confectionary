@@ -1,4 +1,4 @@
-package com.confectinary.app.fragments.adapter
+package com.confectinary.app.fragments.client
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.confectinary.app.R
 import com.confectinary.app.db.entity.ClientDb
-import com.confectinary.app.db.entity.ConfectionaryDb
 
 class ClientsAdapter : RecyclerView.Adapter<ClientsAdapter.ViewHolder>() {
 

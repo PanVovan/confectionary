@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.confectinary.app.R
 import com.confectinary.app.databinding.FragmentViewBinding
-import com.confectinary.app.fragments.adapter.ClientsAdapter
 import com.confectinary.app.fragments.adapter.ManagersAdapter
 import com.confectinary.app.fragments.adapter.entity.TableNames
 

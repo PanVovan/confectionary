@@ -1,4 +1,4 @@
-package com.confectinary.app.fragments.insertfragments
+package com.confectinary.app.fragments.confectionary
 
 import android.os.Bundle
 import android.util.Log

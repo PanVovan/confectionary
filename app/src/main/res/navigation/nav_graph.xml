@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewConfectionariesFragment"
-        android:name="com.confectinary.app.fragments.viewfragments.ViewConfectionariesFragment"
+        android:name="com.confectinary.app.fragments.confectionary.ViewConfectionariesFragment"
         android:label="fragment_view_confectionaries_fragment"
         tools:layout="@layout/fragment_view" >
         <argument
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/insertConfectionaryFragment"
-        android:name="com.confectinary.app.fragments.insertfragments.InsertConfectionaryFragment"
+        android:name="com.confectinary.app.fragments.confectionary.InsertConfectionaryFragment"
         android:label="fragment_insert_confectionary"
         tools:layout="@layout/fragment_insert_confectionary" >
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewClientsFragment"
-        android:name="com.confectinary.app.fragments.viewfragments.ViewClientsFragment"
+        android:name="com.confectinary.app.fragments.client.ViewClientsFragment"
         android:label="ViewClientsFragment" >
         <action
             android:id="@+id/action_viewClientsFragment_to_insertClientFragment"
@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/insertClientFragment"
-        android:name="com.confectinary.app.fragments.insertfragments.InsertClientFragment"
+        android:name="com.confectinary.app.fragments.client.InsertClientFragment"
         android:label="InsertClientFragment" >
         <action
             android:id="@+id/action_insertClientFragment_to_viewClientsFragment"
