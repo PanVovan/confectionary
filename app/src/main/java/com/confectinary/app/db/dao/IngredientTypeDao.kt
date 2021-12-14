@@ -1,12 +1,10 @@
 package com.confectinary.app.db.dao
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
 import com.confectinary.app.db.entity.IngredientTypeDb
 import com.confectinary.app.db.entity.relation.provider_with_ingredient.IngredientTypesWithProvidersDb
 
+@Dao
 interface IngredientTypeDao {
     @Query("SELECT * FROM ingredient_type WHERE ingredient_type_id = :ingredientTypeId")
     suspend fun getIngredientType(ingredientTypeId: Int) : IngredientTypeDb

@@ -11,7 +11,7 @@ data class ManagerWithConfectionariesDb(
     val manager: ManagerDb,
     @Relation(
         parentColumn = "manager_id",
-        entityColumn = "manager_id",
+        entityColumn = "confectionary_id",
         associateBy = Junction(
             value = ConfectionaryAndManagerCrossRef::class
         )

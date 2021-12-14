@@ -11,7 +11,7 @@ data class ConfectionaryWithProvidersDb(
     val confectionary: ConfectionaryDb,
     @Relation(
         parentColumn = "confectionary_id",
-        entityColumn = "confectionary_id",
+        entityColumn = "provider_id",
         associateBy = Junction(
             value = ProviderAndConfectionaryCrossRef::class
         )

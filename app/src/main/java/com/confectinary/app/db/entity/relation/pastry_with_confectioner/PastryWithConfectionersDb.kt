@@ -11,7 +11,7 @@ data class PastryWithConfectionersDb(
     val pastry: PastryDb,
     @Relation(
         parentColumn = "pastry_id",
-        entityColumn = "pastry_id",
+        entityColumn = "confectioner_id",
         associateBy = Junction(
             value = PastryAndConfectionerCrossRef::class
         )

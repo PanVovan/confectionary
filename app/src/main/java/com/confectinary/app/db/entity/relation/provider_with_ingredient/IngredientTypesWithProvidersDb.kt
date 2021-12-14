@@ -11,7 +11,7 @@ data class IngredientTypesWithProvidersDb(
     val ingredientType: IngredientTypeDb,
     @Relation(
         parentColumn = "ingredient_type_id",
-        entityColumn = "ingredient_type_id",
+        entityColumn = "provider_id",
         associateBy = Junction(
             value = ProviderAndIngredientTypeCrossRef::class
         )

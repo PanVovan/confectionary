@@ -41,7 +41,7 @@ class ViewClientsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentViewBinding.inflate(inflater, container, false)
 
         (activity as AppCompatActivity).supportActionBar?.title = tableName
@@ -59,6 +59,7 @@ class ViewClientsFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -70,6 +71,11 @@ class ViewClientsFragment : Fragment() {
                     adapter.notifyDataSetChanged()
                 }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadClients()
     }
 
     //будет срабатывать, когда мы создаем или возвращаемся во фрагмент (то есть всегда)
