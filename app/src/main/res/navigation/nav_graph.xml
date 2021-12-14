@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/roleFragment">
+
+    <fragment
+        android:id="@+id/roleFragment"
+        android:name="com.confectinary.app.fragments.RoleFragment"
+        android:label="Таблицы"
+        tools:layout="@layout/fragment_role">
+        <action
+            android:id="@+id/action_roleFragment_to_viewTableFragment"
+            app:destination="@id/viewTableFragment">
+            <argument
+                android:name="TABLE_NAME"
+                android:defaultValue="Кондитерская" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/viewTableFragment"
+        android:name="com.confectinary.app.fragments.ViewTableFragment"
+        android:label=""
+        tools:layout="@layout/fragment_view_table" >
+        <action
+            android:id="@+id/action_viewTableFragment_to_roleFragment"
+            app:destination="@id/roleFragment" />
+        <argument
+            android:name="TABLE_NAME"
+            android:defaultValue="Кондитерская"/>
+    </fragment>
+</navigation>

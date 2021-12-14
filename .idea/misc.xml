@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProjects/confectionary/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/confectionary/app/src/main/res/layout/content_main.xml" value="0.32314814814814813" />
+        <entry key="..\:/AndroidProjects/confectionary/app/src/main/res/layout/fragment_role.xml" value="0.2636103151862464" />
+        <entry key="..\:/AndroidProjects/confectionary/app/src/main/res/layout/fragment_view_table.xml" value="0.2046875" />
+        <entry key="..\:/AndroidProjects/confectionary/app/src/main/res/layout/item_confectionary.xml" value="0.2046875" />
+        <entry key="..\:/AndroidProjects/confectionary/app/src/main/res/layout/item_table_name.xml" value="0.32314814814814813" />
+        <entry key="..\:/AndroidProjects/confectionary/app/src/main/res/layout/item_talbeitem.xml" value="0.5" />
+        <entry key="..\:/AndroidProjects/confectionary/app/src/main/res/menu/main_menu.xml" value="0.32314814814814813" />
         <entry key="..\:/Programming/confectionary/app/src/main/res/layout/activity_main.xml" value="0.11170212765957446" />
       </map>
     </option>
