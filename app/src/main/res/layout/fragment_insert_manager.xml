@@ -86,7 +86,7 @@
 
 
     <Button
-        app:layout_constraintTop_toBottomOf="@id/manager_phone_number"
+        app:layout_constraintTop_toBottomOf="@id/manager_sphere"
         android:id="@+id/add_item_btn"
         android:text="@string/btn_add_text"
         android:textSize="12sp"
