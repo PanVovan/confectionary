@@ -2,10 +2,18 @@ package com.confectinary.app.db.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "pastry"
+    tableName = "pastry",
+    foreignKeys = [
+        ForeignKey(
+            entity = OrderDb::class,
+            parentColumns = arrayOf("order_id"),
+            childColumns = arrayOf("order_id")
+        ),
+    ]
 )
 data class PastryDb (
     @PrimaryKey
@@ -13,5 +21,8 @@ data class PastryDb (
     val pastry_id: Int,
     val price: Int,
     val naming: String,
-    val manufactured: String
+    val manufactured: String,
+
+    @ColumnInfo(name = "order_id")
+    val orderId: Int,
 )
