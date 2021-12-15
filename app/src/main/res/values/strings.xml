@@ -20,7 +20,8 @@
 
     <string-array name="filters">
         <item>Наименование</item>
-        <item>Минимальная цена</item>
+        <item>Цена: больше</item>
+        <item>Цена: меньше</item>
         <item>Описание</item>
     </string-array>
 </resources>

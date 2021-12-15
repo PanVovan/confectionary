@@ -75,12 +75,23 @@ class PastryFragment : Fragment() {
                         } else
                             updateAdapter(allPastries)
                     }
-                    "Цена" -> {
+                    "Цена: больше" -> {
                         val filter = searchInput.text.toString().toIntOrNull()
                         if(filter != null) {
                             showingPastries =
                                 allPastries?.filter {
                                     it.price >= filter
+                                }
+                            updateAdapter(showingPastries)
+                        }  else
+                            updateAdapter(allPastries)
+                    }
+                    "Цена: меньше" -> {
+                        val filter = searchInput.text.toString().toIntOrNull()
+                        if(filter != null) {
+                            showingPastries =
+                                allPastries?.filter {
+                                    it.price <= filter
                                 }
                             updateAdapter(showingPastries)
                         }  else

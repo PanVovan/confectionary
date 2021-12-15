@@ -18,10 +18,11 @@
             android:id="@+id/description"
             android:text="Адрес:\tааа\nДоход:\tббб"
             android:layout_width="wrap_content"
+            android:maxWidth="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
             android:layout_gravity="center_vertical"
-            android:textAppearance="?attr/textAppearanceListItem" />
+            android:textAppearance="?attr/textAppearanceHeadline6" />
 
 
         <ImageButton

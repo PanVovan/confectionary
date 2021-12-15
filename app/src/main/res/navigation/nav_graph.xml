@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_role">
         <action
             android:id="@+id/action_roleFragment_to_viewConfectionariesFragment"
-            app:destination="@id/viewConfectionariesFragment" />
+            app:destination="@id/viewConfectionariesFragment"/>
         <action
             android:id="@+id/action_roleFragment_to_viewClientsFragment"
             app:destination="@id/viewClientsFragment" />

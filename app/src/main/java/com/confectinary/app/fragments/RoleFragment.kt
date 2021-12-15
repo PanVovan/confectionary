@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,13 +40,22 @@ class RoleFragment : Fragment() {
             tableNamesList.adapter = tableNamesAdapter
 
             chooseRoleSpinner = findViewById(R.id.choose_role_spinner)
+
+            val spinnerAdapter = context?.let {
+                ArrayAdapter(
+                    context!!,
+                    R.layout.spinner_item,
+                    arrayOf("Админ",  "Кондитер")
+                )
+            }
+            chooseRoleSpinner.adapter = spinnerAdapter
             chooseRoleSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                    when (position) {
-                        0 -> tableNamesAdapter.values = TableNames.adminTableNames
-                        1 -> tableNamesAdapter.values = TableNames.confectionerTableNames
-                        2 -> tableNamesAdapter.values = TableNames.clientTableNames
+                    when (chooseRoleSpinner.selectedItem.toString()) {
+                        "Админ" -> tableNamesAdapter.values = TableNames.adminTableNames
+                        "Кондитер" -> tableNamesAdapter.values = TableNames.confectionerTableNames
+                        "Клиент" -> tableNamesAdapter.values = TableNames.clientTableNames
                         else -> tableNamesAdapter.values = TableNames.adminTableNames
                     }
                     tableNamesAdapter.notifyDataSetChanged()
