@@ -85,6 +85,7 @@ class ProviderInsertFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (activity as AppCompatActivity).supportActionBar?.title = tableName
+        viewModel.loadProviders()
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -112,14 +113,14 @@ class ProviderInsertFragment : Fragment() {
                     .collectLatest { list ->
 
                         confecionaries = list
-                        val spinnerAdapter = context?.let {
+                        val spinnerAdapter1 = context?.let {
                             ArrayAdapter(
                                 context!!,
                                 android.R.layout.simple_spinner_item,
                                 arrayOf("Кондитерская").union(list.map { it.address }).toTypedArray()
                             )
                         }
-                        binding.chooseConfectionarySpinner.adapter = spinnerAdapter
+                        binding.chooseConfectionarySpinner.adapter = spinnerAdapter1
                     }
             }
 
