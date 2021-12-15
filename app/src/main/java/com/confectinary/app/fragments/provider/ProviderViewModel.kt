@@ -1,17 +1,16 @@
 package com.confectinary.app.fragments.provider
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.room.Junction
 import com.confectinary.app.db.AppDatabase
-import com.confectinary.app.db.entity.*
+import com.confectinary.app.db.entity.ConfectionaryDb
+import com.confectinary.app.db.entity.IngredientTypeDb
+import com.confectinary.app.db.entity.ProviderDb
 import com.confectinary.app.db.entity.relation.provider_with_confectionary.ProviderAndConfectionaryCrossRef
 import com.confectinary.app.db.entity.relation.provider_with_ingredient.ProviderAndIngredientTypeCrossRef
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
-import java.security.Provider
 
 class ProviderViewModel(
     val db: AppDatabase?
@@ -44,7 +43,7 @@ class ProviderViewModel(
             )
             db?.getProviderAndIngredientTypeDao()?.insertJunction(junction)
             db?.getProviderAndConfectionaryDao()?.insertJunction(
-                ProviderAndConfectionaryCrossRef(id!!, confectionaryId)
+                ProviderAndConfectionaryCrossRef(id, confectionaryId)
             )
         }
         loadProviders()
