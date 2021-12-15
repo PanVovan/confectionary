@@ -22,7 +22,7 @@ interface PastryDao {
     suspend fun getPastries(): List<PastryDb>
 
     @Insert
-    suspend fun insertPastry(pastry: PastryDb)
+    suspend fun insertPastry(pastry: PastryDb): Long
 
     @Delete
     suspend fun deletePastry(pastry: PastryDb)

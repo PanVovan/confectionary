@@ -18,7 +18,7 @@ interface OrderDao {
     suspend fun getOrders(): List<OrderDb>
 
     @Insert
-    suspend fun insertOrder(order: OrderDb)
+    suspend fun insertOrder(order: OrderDb): Long
 
     @Delete
     suspend fun deleteOrder(order: OrderDb)

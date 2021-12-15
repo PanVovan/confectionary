@@ -18,11 +18,11 @@ import androidx.room.PrimaryKey
 data class PastryDb (
     @PrimaryKey
     @ColumnInfo(name = "pastry_id")
-    val pastry_id: Int,
+    val pastry_id: Long?= null,
     val price: Int,
     val naming: String,
     val manufactured: String,
 
     @ColumnInfo(name = "order_id")
-    val orderId: Int,
+    val orderId: Long,
 )

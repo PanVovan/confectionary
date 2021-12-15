@@ -1,0 +1,38 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/provider_naming_input"
+        android:hint="Название"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="@dimen/inputform_text_margin"
+        android:autofillHints="no"
+        android:inputType="text" />
+
+
+    <Button
+        app:layout_constraintTop_toBottomOf="@id/choose_ingredientSpinner"
+        android:id="@+id/add_item_btn"
+        android:text="@string/btn_add_text"
+        android:textSize="12sp"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_margin="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Spinner
+        android:id="@+id/choose_ingredientSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/provider_naming_input"
+        android:layout_margin="@dimen/inputform_text_margin"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

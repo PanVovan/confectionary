@@ -23,11 +23,11 @@ import androidx.room.PrimaryKey
 data class RecipeDb(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "recipe_id")
-    val recipeId: Int,
+    val recipeId: Long?= null,
 
     @ColumnInfo(name = "pastry_id")
     val pastryId: Int,
     @ColumnInfo(name = "ingredient_type_id")
-    val ingredientTypeId: Int,
+    val ingredientTypeId: Long,
     val quantity: Int,
 )

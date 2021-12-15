@@ -10,6 +10,6 @@ import androidx.room.PrimaryKey
 data class IngredientTypeDb(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ingredient_type_id")
-    val ingredientTypeId: Int,
-    val naming: Int,
+    val ingredientTypeId: Long?= null,
+    val naming: String,
 )

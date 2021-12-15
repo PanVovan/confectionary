@@ -18,8 +18,8 @@ import androidx.room.PrimaryKey
 data class OrderDb(
     @PrimaryKey
     @ColumnInfo(name = "order_id")
-    val orderId: Int,
+    val orderId: Long?= null,
     val description: String,
     @ColumnInfo(name = "client_id")
-    val clientId: Int,
+    val clientId: Long,
 )

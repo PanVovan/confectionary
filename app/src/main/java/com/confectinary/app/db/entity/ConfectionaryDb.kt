@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
 data class ConfectionaryDb(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "confectionary_id")
-    val confectionaryId: Int,
+    val confectionaryId: Long?= null,
     val address: String,
     val income: Int,
 )

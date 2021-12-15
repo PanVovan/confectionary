@@ -31,28 +31,23 @@ class InsertClientFragment : Fragment() {
         createFactory(ClientViewModel(context?.let { AppDB.getDatabase(it) }))
     }
 
-    override fun onResume() {
-        super.onResume()
-        (activity as AppCompatActivity).supportActionBar?.title = tableName
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentInsertClientBinding.inflate(inflater, container, false)
 
+        (activity as AppCompatActivity).supportActionBar?.title = tableName
 
         with(binding) {
             addItemBtn.setOnClickListener {
                 //Меняем для разных таблиц
                 try {
                     val newItem = ClientDb(
-                        null,
-                        clientNameInput.text.toString(),
-                        clientSurnameInput.text.toString(),
-                        clientPatronymicInput.text.toString(),
-                        clientPhoneNumber.text.toString()
+                        firstname = clientNameInput.text.toString(),
+                        lastname = clientSurnameInput.text.toString(),
+                        patronymic = clientPatronymicInput.text.toString(),
+                        phoneNumber = clientPhoneNumber.text.toString()
                     )
                     viewModel.insert(newItem)
 

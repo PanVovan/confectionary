@@ -33,12 +33,12 @@ class InsertManagerFragment : Fragment() {
     //Меняем для разных таблиц
     private var tableName = TableNames.TablesEnum.Manager.value
 
+
     private val viewModel: ManagerViewModel by viewModels{
         createFactory(ManagerViewModel(context?.let { AppDB.getDatabase(it) }))
     }
 
     private var confecionaries: List<ConfectionaryDb>? = null
-    private var newId = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,16 +55,15 @@ class InsertManagerFragment : Fragment() {
                     val confectionary = confecionaries?.find { it.address == selectedConfectionary }
                         ?: throw RuntimeException()
                     val newItem = ManagerDb(
-                        newId,
-                        managerNameInput.text.toString(),
-                        managerSurnameInput.text.toString(),
-                        managerPatronymicInput.text.toString(),
-                        managerPhoneNumber.text.toString(),
-                        managerSalary.text.toString().toInt(),
-                        managerExperience.text.toString().toInt(),
-                        managerSphere.text.toString()
+                        firstname = managerNameInput.text.toString(),
+                        lastname = managerSurnameInput.text.toString(),
+                        patronymic = managerPatronymicInput.text.toString(),
+                        phoneNumber = managerPhoneNumber.text.toString(),
+                        salary = managerSalary.text.toString().toInt(),
+                        experience = managerExperience.text.toString().toInt(),
+                        sphere = managerSphere.text.toString()
                     )
-                    viewModel.insert(newItem, confectionary.confectionaryId)
+                    confectionary.confectionaryId?.let { it1 -> viewModel.insert(newItem, it1) }
 
                     findNavController().navigate(
                         //Меняем для разных таблиц
@@ -84,7 +83,6 @@ class InsertManagerFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (activity as AppCompatActivity).supportActionBar?.title = tableName
-        viewModel.loadConfectionaries()
         viewModel.loadManagers()
     }
 
@@ -93,29 +91,20 @@ class InsertManagerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.dataFlow1
-                .flowWithLifecycle(viewLifecycleOwner.lifecycle)
-                .collectLatest { it1 ->
-                    confecionaries = it1
-                    Log.i("<---", it1[0].toString())
+            viewModel.dataFlow1.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+                .collectLatest { list ->
+
+                    confecionaries = list
                     val spinnerAdapter = context?.let {
                         ArrayAdapter(
                             context!!,
                             android.R.layout.simple_spinner_item,
-                            arrayOf("Кондитерская").union(it1.map { i->i.address }).toTypedArray()
+                            arrayOf("Кондитерская").union(list.map { it.address }).toTypedArray()
                         )
                     }
                     binding.chooseConfectionarySpinner.adapter = spinnerAdapter
                 }
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.dataFlow
-                .flowWithLifecycle(viewLifecycleOwner.lifecycle)
-                .collectLatest {
-                    newId = it.maxOfOrNull { i->i.managerId }?:0
-                    newId += 1
-                }
-        }
     }
 }

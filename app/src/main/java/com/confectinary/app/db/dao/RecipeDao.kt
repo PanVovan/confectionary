@@ -17,7 +17,7 @@ interface RecipeDao {
     suspend fun getRecipe(recipeId: Int): RecipeDb
 
     @Insert
-    suspend fun insertRecipe(recipe: RecipeDb)
+    suspend fun insertRecipe(recipe: RecipeDb): Long
 
     @Delete
     suspend fun deleteRecipe(recipe: RecipeDb)

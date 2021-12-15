@@ -18,7 +18,7 @@ import androidx.room.PrimaryKey
 data class ConfectionerDb(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "confectioner_id")
-    val confectionerId: Int,
+    val confectionerId: Long?= null,
 
     val firstname: String,
     val lastname: String,
@@ -28,5 +28,5 @@ data class ConfectionerDb(
     val rating: Int,
 
     @ColumnInfo(name = "confectionary_id")
-    val confectionaryId: Int,
+    val confectionaryId: Long,
 )

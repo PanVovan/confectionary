@@ -1,8 +1,8 @@
 package com.confectinary.app.fragments.client
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.confectinary.app.db.AppDB
 import com.confectinary.app.db.AppDatabase
 import com.confectinary.app.db.entity.ClientDb
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -18,6 +18,7 @@ class ClientViewModel(
     fun loadClients() {
         viewModelScope.launch {
             _dataFlow.emit(db?.getClientDao()?.getClients() ?: emptyList())
+
         }
     }
 

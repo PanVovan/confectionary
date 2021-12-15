@@ -16,7 +16,7 @@ interface ClientDao {
     suspend fun getClient(clientId: Int): ClientDb
 
     @Insert
-    suspend fun insertClient(client: ClientDb)
+    suspend fun insertClient(client: ClientDb): Long
 
     @Delete
     suspend fun deleteClient(client: ClientDb)

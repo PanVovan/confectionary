@@ -19,18 +19,12 @@ class ConfectionerViewModel(
     fun loadConfectioners() {
         viewModelScope.launch {
             _dataFlow.emit(db?.getConfectionerDao()?.getConfectioners() ?: emptyList())
+            _dataFlow1.emit(db?.getConfectionaryDao()?.getConfectionaries() ?: emptyList())
         }
     }
 
     private val _dataFlow1 = MutableSharedFlow<List<ConfectionaryDb>>()
     val dataFlow1 = _dataFlow1.asSharedFlow()
-
-    fun loadConfectionaries() {
-        viewModelScope.launch {
-            _dataFlow1.emit(db?.getConfectionaryDao()?.getConfectionaries() ?: emptyList())
-        }
-    }
-
 
 
     fun insert(newItem: ConfectionerDb){

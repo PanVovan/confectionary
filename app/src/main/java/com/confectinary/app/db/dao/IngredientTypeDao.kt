@@ -21,7 +21,7 @@ interface IngredientTypeDao {
     suspend fun getIngredientTypes(): List<IngredientTypeDb>
 
     @Insert
-    suspend fun insertIngredientType(ingredientType: IngredientTypeDb)
+    suspend fun insertIngredientType(ingredientType: IngredientTypeDb): Long
 
     @Delete
     suspend fun deleteIngredientType(ingredientType: IngredientTypeDb)

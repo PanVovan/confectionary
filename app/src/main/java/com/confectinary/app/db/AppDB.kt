@@ -16,7 +16,8 @@ object AppDB {
                 context.applicationContext,
                 AppDatabase::class.java,
                 "confectionary_database.db"
-            ).build()
+                ).fallbackToDestructiveMigration()
+                .build()
             database
         }
     }

@@ -20,26 +20,19 @@ class ManagerViewModel (
     private val _dataFlow1 = MutableSharedFlow<List<ConfectionaryDb>>()
     val dataFlow1 = _dataFlow1.asSharedFlow()
 
-    fun loadConfectionaries() {
+    fun loadManagers() {
         viewModelScope.launch {
+            _dataFlow.emit(db?.getManagerDao()?.getManagers() ?: emptyList())
             _dataFlow1.emit(db?.getConfectionaryDao()?.getConfectionaries() ?: emptyList())
         }
     }
 
+    fun insert(newItem: ManagerDb, confectionaryId: Long){
 
-    fun loadManagers() {
         viewModelScope.launch {
-            _dataFlow.emit(db?.getManagerDao()?.getManagers() ?: emptyList())
-        }
-    }
-
-    fun insert(newItem: ManagerDb, confectionaryId: Int){
-        viewModelScope.launch {
-            db?.getManagerDao()?.insertManager(newItem)
-        }
-        viewModelScope.launch {
-            db?.getManagerDao()?.insertConfectionaryAndManagerCrossRef(
-                ConfectionaryAndManagerCrossRef(newItem.managerId, confectionaryId)
+            val id = db?.getManagerDao()?.insertManager(newItem)
+            db?.getConfectionaryAndManagerDao()?.insertJunction(
+                ConfectionaryAndManagerCrossRef(id!!, confectionaryId)
             )
         }
         loadManagers()

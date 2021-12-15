@@ -5,9 +5,13 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.confectinary.app.db.entity.relation.provider_with_confectionary.ProviderAndConfectionaryCrossRef
+import com.confectinary.app.db.entity.relation.provider_with_ingredient.ProviderAndIngredientTypeCrossRef
 
 @Dao
 interface ProviderAndConfectionaryDao {
+
+    @Query("SELECT * FROM provider_and_confectionary")
+    suspend fun getJunction(): List<ProviderAndConfectionaryCrossRef>
 
     @Query("SELECT * FROM provider_and_confectionary WHERE confectionary_id = :confectionaryId")
     suspend fun getProvidersByConfectionary(confectionaryId: Int): List<ProviderAndConfectionaryCrossRef>

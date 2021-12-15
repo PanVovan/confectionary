@@ -9,7 +9,7 @@ import androidx.room.Entity
 )
 data class PastryAndConfectionerCrossRef(
     @ColumnInfo(name = "confectioner_id")
-    val confectionerId: Int,
+    val confectionerId: Long,
     @ColumnInfo(name = "pastry_id")
-    val pastryId: Int
+    val pastryId: Long
 )

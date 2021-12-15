@@ -30,7 +30,7 @@ interface ConfectionaryDao {
     suspend fun getConfectionariesWithProviders(): List<ConfectionaryWithProvidersDb>
 
     @Insert
-    suspend fun insertConfectionary(confectionary: ConfectionaryDb)
+    suspend fun insertConfectionary(confectionary: ConfectionaryDb): Long
 
     @Delete
     suspend fun deleteConfectionary(confectionary: ConfectionaryDb)

@@ -10,6 +10,6 @@ import androidx.room.PrimaryKey
 data class ProviderDb(
     @PrimaryKey
     @ColumnInfo(name = "provider_id")
-    val providerId: Int,
+    val providerId: Long?= null,
     val naming: String,
 )

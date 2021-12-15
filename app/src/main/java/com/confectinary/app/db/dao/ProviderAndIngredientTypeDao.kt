@@ -10,6 +10,9 @@ import com.confectinary.app.db.entity.relation.provider_with_ingredient.Provider
 @Dao
 interface ProviderAndIngredientTypeDao {
 
+    @Query("SELECT * FROM provider_and_ingredient")
+    suspend fun getJunction(): List<ProviderAndIngredientTypeCrossRef>
+
     @Query("SELECT * FROM provider_and_ingredient WHERE ingredient_type_id = :ingredientType")
     suspend fun getProvidersByIngredientType(ingredientType: Int): List<ProviderAndIngredientTypeCrossRef>
 

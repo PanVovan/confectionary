@@ -27,8 +27,5 @@ interface ManagerDao {
     suspend fun deleteManager(manager: ManagerDb)
 
     @Insert
-    suspend fun insertManager(manager: ManagerDb)
-
-    @Insert
-    suspend fun insertConfectionaryAndManagerCrossRef(confectionaryAndManagerCrossRef: ConfectionaryAndManagerCrossRef)
+    suspend fun insertManager(manager: ManagerDb): Long
 }

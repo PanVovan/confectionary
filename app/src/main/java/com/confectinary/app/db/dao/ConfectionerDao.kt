@@ -24,5 +24,5 @@ interface ConfectionerDao {
     suspend fun deleteConfectioner(confectioner: ConfectionerDb)
 
     @Insert
-    suspend fun insertConfectioner(confectioner: ConfectionerDb)
+    suspend fun insertConfectioner(confectioner: ConfectionerDb): Long
 }

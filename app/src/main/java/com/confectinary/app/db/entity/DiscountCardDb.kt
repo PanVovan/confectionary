@@ -18,10 +18,10 @@ import androidx.room.PrimaryKey
 data class DiscountCardDb (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "card_id")
-    val cardId: Int,
+    val cardId: Long?= null,
     val discount: Int,
     val registration: String,
     val type: String,
     @ColumnInfo(name = "client_id")
-    val clientId: Int,
+    val clientId: Long,
 )

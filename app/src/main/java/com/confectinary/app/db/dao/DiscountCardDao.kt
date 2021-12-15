@@ -19,7 +19,7 @@ interface DiscountCardDao {
     suspend fun deleteDiscountCardAtClient(clientId: Int)
 
     @Insert
-    suspend fun insertDiscountCard(card: DiscountCardDb)
+    suspend fun insertDiscountCard(card: DiscountCardDb): Long
 
     @Delete
     suspend fun deleteDiscountCard(card: DiscountCardDb)

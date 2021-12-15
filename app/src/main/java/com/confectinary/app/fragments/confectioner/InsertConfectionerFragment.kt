@@ -32,7 +32,6 @@ class InsertConfectionerFragment : Fragment() {
     //Меняем для разных таблиц
     private var tableName = TableNames.TablesEnum.Confectioner.value
     private var confecionaries: List<ConfectionaryDb>? = null
-    private var newId = 0
 
     private val viewModel: ConfectionerViewModel by viewModels{
         createFactory(ConfectionerViewModel(context?.let { AppDB.getDatabase(it) }))
@@ -53,14 +52,13 @@ class InsertConfectionerFragment : Fragment() {
                     val confectionary = confecionaries?.find { it.address == selectedConfectionary }
                         ?: throw RuntimeException()
                     val newItem = ConfectionerDb(
-                        0,
-                        confectionerFirstnameInput.text.toString(),
-                        confectionerLastnameInput.text.toString(),
-                        confectionerPatronymicInput.text.toString(),
-                        confectionerSalary.text.toString().toInt(),
-                        confectionerExperience.text.toString().toInt(),
-                        confectionerRating.text.toString().toInt(),
-                        confectionary.confectionaryId
+                        firstname = confectionerFirstnameInput.text.toString(),
+                        lastname = confectionerLastnameInput.text.toString(),
+                        patronymic = confectionerPatronymicInput.text.toString(),
+                        salary = confectionerSalary.text.toString().toInt(),
+                        experience = confectionerExperience.text.toString().toInt(),
+                        rating = confectionerRating.text.toString().toInt(),
+                        confectionaryId = confectionary.confectionaryId!!
                     )
                     viewModel.insert(newItem)
 
@@ -82,7 +80,6 @@ class InsertConfectionerFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (activity as AppCompatActivity).supportActionBar?.title = tableName
-        viewModel.loadConfectionaries()
         viewModel.loadConfectioners()
     }
 
@@ -103,15 +100,6 @@ class InsertConfectionerFragment : Fragment() {
                         )
                     }
                     binding.chooseConfectionarySpinner.adapter = spinnerAdapter
-                }
-        }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.dataFlow
-                .flowWithLifecycle(viewLifecycleOwner.lifecycle)
-                .collectLatest {
-                    newId = it.maxOfOrNull { i->i.confectionerId }?:0
-                    newId += 1
                 }
         }
     }

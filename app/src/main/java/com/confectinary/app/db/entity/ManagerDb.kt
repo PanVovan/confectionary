@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
 data class ManagerDb(
     @PrimaryKey
     @ColumnInfo( name = "manager_id")
-    val managerId: Int,
+    val managerId: Long?= null,
     val firstname: String,
     val lastname: String,
     val patronymic: String?,

@@ -33,7 +33,7 @@ interface ProviderDao {
     suspend fun getProviderWithIngredientTypes(providerId: Int): ProviderWithIngredientTypesDb
 
     @Insert
-    suspend fun insertProvider(provider: ProviderDb)
+    suspend fun insertProvider(provider: ProviderDb): Long
 
     @Delete
     suspend fun deleteProvider(provider: ProviderDb)

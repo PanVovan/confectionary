@@ -36,8 +36,6 @@ class InsertConfectionaryFragment : Fragment() {
     //Меняем для разных таблиц
     private var tableName = TableNames.TablesEnum.Confectionary.value
 
-    private var newId = 0
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,9 +49,8 @@ class InsertConfectionaryFragment : Fragment() {
                 //Меняем для разных таблиц
                 try {
                     val newItem = ConfectionaryDb(
-                        newId,
-                        confectionaryAddressInput.text.toString(),
-                        confectionaryIncomeInput.text.toString().toInt()
+                        address = confectionaryAddressInput.text.toString(),
+                        income = confectionaryIncomeInput.text.toString().toInt()
                     )
                     viewModel.insert(newItem)
 
@@ -77,19 +74,4 @@ class InsertConfectionaryFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title = tableName
         viewModel.loadConfectionaries()
     }
-
-    @SuppressLint("NotifyDataSetChanged")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.dataFlow
-                .flowWithLifecycle(viewLifecycleOwner.lifecycle)
-                .collectLatest {
-                    newId = it.maxOfOrNull { i->i.confectionaryId } ?:0
-                    newId += 1
-                }
-        }
-    }
-
 }
