@@ -14,6 +14,8 @@ import androidx.navigation.fragment.findNavController
 import com.confectinary.app.R
 import com.confectinary.app.databinding.FragmentViewBinding
 import com.confectinary.app.db.AppDB
+import com.confectinary.app.db.entity.ManagerDb
+import com.confectinary.app.db.entity.ProviderDb
 import com.confectinary.app.extentions.createFactory
 import com.confectinary.app.fragments.adapter.entity.TableNames
 import kotlinx.coroutines.flow.collectLatest
@@ -36,7 +38,7 @@ class ProviderFragment : Fragment() {
     //Меняем для разных таблиц
     private var tableName = TableNames.TablesEnum.Provider.value
     //Меняем для разных таблиц
-    private var adapter: ProviderAdapter = ProviderAdapter()
+    private var adapter: ProviderAdapter = ProviderAdapter(this::deleteItem)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +59,10 @@ class ProviderFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun deleteItem(item: ProviderDb) {
+        viewModel.delete(item)
     }
 
     @SuppressLint("NotifyDataSetChanged")

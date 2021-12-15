@@ -3,35 +3,16 @@ package com.confectinary.app.fragments.confectionary
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.confectinary.app.R
+import com.confectinary.app.db.entity.ClientDb
 import com.confectinary.app.db.entity.ConfectionaryDb
 
-class ConfectionariesAdapter : RecyclerView.Adapter<ConfectionariesAdapter.ViewHolder>() {
+class ConfectionariesAdapter(private val onclick: (ConfectionaryDb) -> Unit ): RecyclerView.Adapter<ConfectionariesAdapter.ViewHolder>() {
 
-    var values = listOf(
-        ConfectionaryDb(0, "Волгоград, ул. Ленина, 21/1", 100000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000),
-        ConfectionaryDb(0, "Тверь, ул. Перекопченко, 15", 214000)
-    )
+    var values = emptyList<ConfectionaryDb>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -51,12 +32,14 @@ class ConfectionariesAdapter : RecyclerView.Adapter<ConfectionariesAdapter.ViewH
             "Доход: $income"
 
         holder.description.text = displayTest
+        holder.deleteBtn.setOnClickListener { onclick(item) }
     }
 
     override fun getItemCount(): Int = values.size
 
     inner class ViewHolder(binding: View) : RecyclerView.ViewHolder(binding) {
         val description: TextView = binding.findViewById(R.id.description)
+        val deleteBtn: ImageButton = binding.findViewById(R.id.delete_btn)
 
         override fun toString(): String {
             return super.toString() + " '" + description.text + "'"

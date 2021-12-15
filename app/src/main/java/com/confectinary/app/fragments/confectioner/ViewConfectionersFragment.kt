@@ -14,6 +14,8 @@ import androidx.navigation.fragment.findNavController
 import com.confectinary.app.R
 import com.confectinary.app.databinding.FragmentViewBinding
 import com.confectinary.app.db.AppDB
+import com.confectinary.app.db.entity.ConfectionerDb
+import com.confectinary.app.db.entity.ManagerDb
 import com.confectinary.app.extentions.createFactory
 import com.confectinary.app.fragments.adapter.entity.TableNames
 import com.confectinary.app.fragments.manager.ManagerViewModel
@@ -37,7 +39,7 @@ class ViewConfectionersFragment : Fragment() {
     //Меняем для разных таблиц
     private var tableName = TableNames.TablesEnum.Confectioner.value
     //Меняем для разных таблиц
-    private var adapter: ConfectionersAdapter = ConfectionersAdapter()
+    private var adapter: ConfectionersAdapter = ConfectionersAdapter(this::deleteItem)
 
 
 
@@ -58,6 +60,10 @@ class ViewConfectionersFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun deleteItem(item: ConfectionerDb) {
+        viewModel.delete(item)
     }
 
     @SuppressLint("NotifyDataSetChanged")

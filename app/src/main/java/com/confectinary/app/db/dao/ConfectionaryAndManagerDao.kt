@@ -14,10 +14,10 @@ interface ConfectionaryAndManagerDao {
     suspend fun getJunction(): List<ConfectionaryAndManagerCrossRef>
 
     @Query("SELECT * FROM confectionary_and_manager WHERE confectionary_id = :confectionaryId")
-    suspend fun getManagersByConfectionary(confectionaryId: Int): List<ConfectionaryAndManagerCrossRef>
+    suspend fun getManagersByConfectionary(confectionaryId: Long): List<ConfectionaryAndManagerCrossRef>
 
     @Query("SELECT * FROM confectionary_and_manager WHERE manager_id = :managerId")
-    suspend fun getConfectionariesByManager(managerId: Int): List<ConfectionaryAndManagerCrossRef>
+    suspend fun getConfectionariesByManager(managerId: Long): List<ConfectionaryAndManagerCrossRef>
 
     @Insert
     suspend fun insertJunction(junction: ConfectionaryAndManagerCrossRef)

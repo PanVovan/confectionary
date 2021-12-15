@@ -5,10 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.Junction
 import com.confectinary.app.db.AppDatabase
-import com.confectinary.app.db.entity.ClientDb
-import com.confectinary.app.db.entity.ConfectionaryDb
-import com.confectinary.app.db.entity.IngredientTypeDb
-import com.confectinary.app.db.entity.ProviderDb
+import com.confectinary.app.db.entity.*
 import com.confectinary.app.db.entity.relation.provider_with_confectionary.ProviderAndConfectionaryCrossRef
 import com.confectinary.app.db.entity.relation.provider_with_ingredient.ProviderAndIngredientTypeCrossRef
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -53,5 +50,25 @@ class ProviderViewModel(
         loadProviders()
     }
 
+
+    fun delete(item: ProviderDb){
+
+        viewModelScope.launch {
+            db?.getProviderDao()?.deleteProvider(item)
+            val junction1 = item.providerId?.let {
+                db?.getProviderAndConfectionaryDao()?.getConfectionariesByProvider(it)
+            }
+            junction1?.forEach {
+                db?.getProviderAndConfectionaryDao()?.deleteJunction(it)
+            }
+            val junction2 = item.providerId?.let {
+                db?.getProviderAndIngredientTypeDao()?.getIngredientTypesByProvider(it)
+            }
+            junction2?.forEach {
+                db?.getProviderAndIngredientTypeDao()?.deleteJunction(it)
+            }
+        }
+        loadProviders()
+    }
 
 }

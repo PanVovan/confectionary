@@ -14,10 +14,10 @@ interface ProviderAndConfectionaryDao {
     suspend fun getJunction(): List<ProviderAndConfectionaryCrossRef>
 
     @Query("SELECT * FROM provider_and_confectionary WHERE confectionary_id = :confectionaryId")
-    suspend fun getProvidersByConfectionary(confectionaryId: Int): List<ProviderAndConfectionaryCrossRef>
+    suspend fun getProvidersByConfectionary(confectionaryId: Long): List<ProviderAndConfectionaryCrossRef>
 
     @Query("SELECT * FROM provider_and_confectionary WHERE provider_id = :providerId")
-    suspend fun getConfectionariesByProvider(providerId: Int): List<ProviderAndConfectionaryCrossRef>
+    suspend fun getConfectionariesByProvider(providerId: Long): List<ProviderAndConfectionaryCrossRef>
 
     @Insert
     suspend fun insertJunction(junction: ProviderAndConfectionaryCrossRef)

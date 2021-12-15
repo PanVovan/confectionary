@@ -14,6 +14,8 @@ import androidx.navigation.fragment.findNavController
 import com.confectinary.app.R
 import com.confectinary.app.databinding.FragmentViewBinding
 import com.confectinary.app.db.AppDB
+import com.confectinary.app.db.entity.IngredientTypeDb
+import com.confectinary.app.db.entity.ManagerDb
 import com.confectinary.app.extentions.createFactory
 import com.confectinary.app.fragments.adapter.entity.TableNames
 import com.confectinary.app.fragments.client.ClientViewModel
@@ -36,14 +38,13 @@ class IngredientTypeFragment  : Fragment() {
     }
 
     //Меняем для разных таблиц
-    private var tableName = TableNames.TablesEnum.Client.value
+    private var tableName = TableNames.TablesEnum.IngredientType.value
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentViewBinding.inflate(inflater, container, false)
 
-        (activity as AppCompatActivity).supportActionBar?.title = tableName
 
         with(binding) {
             talbeitemsList.adapter = adapter
@@ -58,8 +59,12 @@ class IngredientTypeFragment  : Fragment() {
         return binding.root
     }
 
+    private fun deleteItem(item: IngredientTypeDb) {
+        viewModel.delete(item)
+    }
+
     //Меняем для разных таблиц
-    private var adapter: IngredientTypeAdapter = IngredientTypeAdapter()
+    private var adapter: IngredientTypeAdapter = IngredientTypeAdapter(this::deleteItem)
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -77,6 +82,7 @@ class IngredientTypeFragment  : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.title = tableName
         viewModel.loadIngredientTypes()
     }
 }

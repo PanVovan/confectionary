@@ -3,14 +3,16 @@ package com.confectinary.app.fragments.ingredient_type
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.confectinary.app.R
 import com.confectinary.app.db.entity.ClientDb
 import com.confectinary.app.db.entity.IngredientTypeDb
+import com.confectinary.app.db.entity.ManagerDb
 import com.confectinary.app.fragments.client.ClientsAdapter
 
-class IngredientTypeAdapter : RecyclerView.Adapter<IngredientTypeAdapter.ViewHolder>() {
+class IngredientTypeAdapter(private val onclick: (IngredientTypeDb) -> Unit ) : RecyclerView.Adapter<IngredientTypeAdapter.ViewHolder>() {
 
     var values = emptyList<IngredientTypeDb>()
 
@@ -31,12 +33,14 @@ class IngredientTypeAdapter : RecyclerView.Adapter<IngredientTypeAdapter.ViewHol
         val displayTest = "Наименование: $firstname"
 
         holder.description.text = displayTest
+        holder.deleteBtn.setOnClickListener { onclick(item) }
     }
 
     override fun getItemCount(): Int = values.size
 
     inner class ViewHolder(binding: View) : RecyclerView.ViewHolder(binding) {
         val description: TextView = binding.findViewById(R.id.description)
+        val deleteBtn: ImageButton = binding.findViewById(R.id.delete_btn)
 
         override fun toString(): String {
             return super.toString() + " '" + description.text + "'"

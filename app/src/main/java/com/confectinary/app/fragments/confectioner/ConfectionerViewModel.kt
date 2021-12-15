@@ -6,6 +6,7 @@ import com.confectinary.app.db.AppDatabase
 import com.confectinary.app.db.entity.ClientDb
 import com.confectinary.app.db.entity.ConfectionaryDb
 import com.confectinary.app.db.entity.ConfectionerDb
+import com.confectinary.app.db.entity.ManagerDb
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
@@ -30,6 +31,14 @@ class ConfectionerViewModel(
     fun insert(newItem: ConfectionerDb){
         viewModelScope.launch {
             db?.getConfectionerDao()?.insertConfectioner(newItem)
+        }
+        loadConfectioners()
+    }
+
+    fun delete(item: ConfectionerDb){
+
+        viewModelScope.launch {
+            db?.getConfectionerDao()?.deleteConfectioner(item)
         }
         loadConfectioners()
     }

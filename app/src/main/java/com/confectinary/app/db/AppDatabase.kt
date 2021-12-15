@@ -6,6 +6,7 @@ import com.confectinary.app.db.dao.*
 import com.confectinary.app.db.entity.*
 import com.confectinary.app.db.entity.relation.manager_with_confectionary.ConfectionaryAndManagerCrossRef
 import com.confectinary.app.db.entity.relation.pastry_with_confectioner.PastryAndConfectionerCrossRef
+import com.confectinary.app.db.entity.relation.pastry_with_ingredient.PastryAndIngredientTypeCrossRef
 import com.confectinary.app.db.entity.relation.provider_with_confectionary.ProviderAndConfectionaryCrossRef
 import com.confectinary.app.db.entity.relation.provider_with_ingredient.ProviderAndIngredientTypeCrossRef
 
@@ -23,6 +24,7 @@ import com.confectinary.app.db.entity.relation.provider_with_ingredient.Provider
         RecipeDb::class,
         ConfectionaryAndManagerCrossRef::class,
         PastryAndConfectionerCrossRef::class,
+        PastryAndIngredientTypeCrossRef::class,
         ProviderAndIngredientTypeCrossRef::class,
         ProviderAndConfectionaryCrossRef::class
     ],
@@ -39,6 +41,7 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun getManagerDao(): ManagerDao
     abstract fun getOrderDao(): OrderDao
     abstract fun getPastryAndConfectionerDao(): PastryAndConfectionerDao
+    abstract fun getPastryAndIngredientTypeDao(): PastryAdnIngredientTypeDao
     abstract fun getPastryDao(): PastryDao
     abstract fun getProviderAndConfectionaryDao(): ProviderAndConfectionaryDao
     abstract fun getProviderAndIngredientTypeDao(): ProviderAndIngredientTypeDao

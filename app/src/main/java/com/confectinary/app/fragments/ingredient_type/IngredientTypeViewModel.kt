@@ -4,8 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.confectinary.app.db.AppDatabase
 import com.confectinary.app.db.entity.IngredientTypeDb
-import com.confectinary.app.db.entity.ProviderDb
-import com.confectinary.app.db.entity.relation.provider_with_ingredient.ProviderAndIngredientTypeCrossRef
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
@@ -31,5 +29,25 @@ class IngredientTypeViewModel(
         loadIngredientTypes()
     }
 
+    fun delete(item: IngredientTypeDb){
+
+        viewModelScope.launch {
+            db?.getIngredientTypeDao()?.deleteIngredientType(item)
+            val junction1 = item.ingredientTypeId?.let {
+                db?.getProviderAndIngredientTypeDao()?.getProvidersByIngredientType(it)
+            }
+            junction1?.forEach {
+                db?.getProviderAndIngredientTypeDao()?.deleteJunction(it)
+            }
+
+            val junction2 = item.ingredientTypeId?.let {
+                db?.getPastryAndIngredientTypeDao()?.getPastriesByIngredientTye(it)
+            }
+            junction2?.forEach {
+                db?.getPastryAndIngredientTypeDao()?.deleteJunction(it)
+            }
+        }
+        loadIngredientTypes()
+    }
 
 }

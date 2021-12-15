@@ -14,10 +14,10 @@ interface ProviderAndIngredientTypeDao {
     suspend fun getJunction(): List<ProviderAndIngredientTypeCrossRef>
 
     @Query("SELECT * FROM provider_and_ingredient WHERE ingredient_type_id = :ingredientType")
-    suspend fun getProvidersByIngredientType(ingredientType: Int): List<ProviderAndIngredientTypeCrossRef>
+    suspend fun getProvidersByIngredientType(ingredientType: Long): List<ProviderAndIngredientTypeCrossRef>
 
     @Query("SELECT * FROM provider_and_ingredient WHERE provider_id = :providerId")
-    suspend fun getIngredientTypesByProvider(providerId: Int): List<ProviderAndIngredientTypeCrossRef>
+    suspend fun getIngredientTypesByProvider(providerId: Long): List<ProviderAndIngredientTypeCrossRef>
 
     @Insert
     suspend fun insertJunction(junction: ProviderAndIngredientTypeCrossRef)

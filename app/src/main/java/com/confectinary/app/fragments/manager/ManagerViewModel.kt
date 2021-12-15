@@ -37,4 +37,18 @@ class ManagerViewModel (
         }
         loadManagers()
     }
+
+    fun delete(item: ManagerDb){
+
+        viewModelScope.launch {
+            db?.getManagerDao()?.deleteManager(item)
+            val junction1 = item.managerId?.let {
+                db?.getConfectionaryAndManagerDao()?.getConfectionariesByManager(it)
+            }
+            junction1?.forEach {
+                db?.getConfectionaryAndManagerDao()?.deleteJunction(it)
+            }
+        }
+        loadManagers()
+    }
 }
