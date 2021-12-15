@@ -5,9 +5,13 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.confectinary.app.db.entity.DiscountCardDb
+import com.confectinary.app.db.entity.ManagerDb
 
 @Dao
 interface DiscountCardDao {
+
+    @Query("SELECT * FROM discount_card")
+    suspend fun getDiscountCards(): List<DiscountCardDb>
 
     @Query("SELECT * FROM discount_card WHERE client_id = :clientId")
     suspend fun getClientsDiscountCardById(clientId: Int): List<DiscountCardDb>

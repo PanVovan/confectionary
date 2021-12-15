@@ -35,7 +35,7 @@ class ViewConfectionariesFragment : Fragment() {
     //Меняем для разных таблиц
     private var tableName = TableNames.TablesEnum.Confectionary.value
     //Меняем для разных таблиц
-    private var adapter: ConfectionariesAdapter = ConfectionariesAdapter(this::deleteItem)
+    private var adapter: ConfectionariesAdapter = ConfectionariesAdapter()
 
 
     private val viewModel: ConfectionaryViewModel by viewModels{
@@ -62,9 +62,6 @@ class ViewConfectionariesFragment : Fragment() {
         return binding.root
     }
 
-    private fun deleteItem(item: ConfectionaryDb) {
-        viewModel.delete(item)
-    }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

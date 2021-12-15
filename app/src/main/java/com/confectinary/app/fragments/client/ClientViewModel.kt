@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.confectinary.app.db.AppDatabase
 import com.confectinary.app.db.entity.ClientDb
+import com.confectinary.app.db.entity.ConfectionaryDb
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
@@ -28,4 +29,5 @@ class ClientViewModel(
         }
         loadClients()
     }
+
 }

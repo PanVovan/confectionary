@@ -29,28 +29,5 @@ class ConfectionaryViewModel (
         loadConfectionaries()
     }
 
-    fun delete(item: ConfectionaryDb){
-        viewModelScope.launch {
-            val confectioners = db?.getConfectionerDao()?.getConfectioners()
-            confectioners?.forEach {
-                if(it.confectionaryId==item.confectionaryId)
-                    db?.getConfectionerDao()?.deleteConfectioner(it)
-            }
 
-            db?.getConfectionaryDao()?.deleteConfectionary(item)
-            val junction1 = item.confectionaryId?.let {
-                db?.getConfectionaryAndManagerDao()?.getManagersByConfectionary(it)
-            }
-            junction1?.forEach {
-                db?.getConfectionaryAndManagerDao()?.deleteJunction(it)
-            }
-            val junction2 = item.confectionaryId?.let {
-                db?.getProviderAndConfectionaryDao()?.getProvidersByConfectionary(it)
-            }
-            junction2?.forEach {
-                db?.getProviderAndConfectionaryDao()?.deleteJunction(it)
-            }
-        }
-        loadConfectionaries()
-    }
 }
