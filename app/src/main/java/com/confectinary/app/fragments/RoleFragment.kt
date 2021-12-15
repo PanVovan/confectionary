@@ -72,6 +72,8 @@ class RoleFragment : Fragment() {
                 findNavController().navigate(R.id.action_roleFragment_to_providerFragment)
             TableNames.TablesEnum.IngredientType.value ->
                 findNavController().navigate(R.id.action_roleFragment_to_ingredientTypeFragment)
+            TableNames.TablesEnum.Pastry.value ->
+                findNavController().navigate(R.id.action_roleFragment_to_pastryFragment)
         }
     }
 

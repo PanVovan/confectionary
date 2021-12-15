@@ -11,6 +11,7 @@
         <entry key="..\:/AndroidProjects/confectionary/app/src/main/res/layout/fragment_insert_confectioner.xml" value="0.2046875" />
         <entry key="..\:/AndroidProjects/confectionary/app/src/main/res/layout/fragment_insert_ingredient_type.xml" value="0.365625" />
         <entry key="..\:/AndroidProjects/confectionary/app/src/main/res/layout/fragment_insert_manager.xml" value="0.365625" />
+        <entry key="..\:/AndroidProjects/confectionary/app/src/main/res/layout/fragment_insert_pastry.xml" value="0.2046875" />
         <entry key="..\:/AndroidProjects/confectionary/app/src/main/res/layout/fragment_provider_insert.xml" value="0.365625" />
         <entry key="..\:/AndroidProjects/confectionary/app/src/main/res/layout/fragment_role.xml" value="0.2636103151862464" />
         <entry key="..\:/AndroidProjects/confectionary/app/src/main/res/layout/fragment_view.xml" value="0.365625" />
@@ -24,14 +25,6 @@
         <entry key="..\:/AndroidProjects/confectionary/app/src/main/res/layout/item_talbeitem.xml" value="0.5" />
         <entry key="..\:/AndroidProjects/confectionary/app/src/main/res/menu/main_menu.xml" value="0.32314814814814813" />
         <entry key="..\:/Programming/confectionary/app/src/main/res/layout/activity_main.xml" value="0.11170212765957446" />
-        <entry key="..\:/Programming/confectionary/app/src/main/res/layout/fragment_insert_client.xml" value="0.12335359675785208" />
-        <entry key="..\:/Programming/confectionary/app/src/main/res/layout/fragment_insert_confectionary.xml" value="0.17074275362318841" />
-        <entry key="..\:/Programming/confectionary/app/src/main/res/layout/fragment_insert_confectioner.xml" value="0.1" />
-        <entry key="..\:/Programming/confectionary/app/src/main/res/layout/fragment_insert_manager.xml" value="0.2" />
-        <entry key="..\:/Programming/confectionary/app/src/main/res/layout/fragment_provider_insert.xml" value="0.12335359675785208" />
-        <entry key="..\:/Programming/confectionary/app/src/main/res/layout/fragment_view.xml" value="0.12335359675785208" />
-        <entry key="..\:/Programming/confectionary/app/src/main/res/layout/item_table_name.xml" value="0.12335359675785208" />
-        <entry key="..\:/Programming/confectionary/app/src/main/res/layout/provider_fragment.xml" value="0.12335359675785208" />
       </map>
     </option>
   </component>

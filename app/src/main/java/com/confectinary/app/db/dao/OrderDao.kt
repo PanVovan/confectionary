@@ -14,7 +14,7 @@ interface OrderDao {
     @Query("SELECT * FROM `order` WHERE order_id = :orderId")
     suspend fun getOrder(orderId: Int): OrderDb
 
-    @Query("SELECT * FROM `order`s")
+    @Query("SELECT * FROM `order`")
     suspend fun getOrders(): List<OrderDb>
 
     @Insert
