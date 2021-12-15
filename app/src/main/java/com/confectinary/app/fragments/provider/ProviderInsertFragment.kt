@@ -2,6 +2,7 @@ package com.confectinary.app.fragments.provider
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -108,22 +109,22 @@ class ProviderInsertFragment : Fragment() {
                     binding.chooseIngredientSpinner.adapter = spinnerAdapter
                 }
 
-            viewLifecycleOwner.lifecycleScope.launch {
-                viewModel.dataFlow2.flowWithLifecycle(viewLifecycleOwner.lifecycle)
-                    .collectLatest { list ->
+        }
 
-                        confecionaries = list
-                        val spinnerAdapter1 = context?.let {
-                            ArrayAdapter(
-                                context!!,
-                                android.R.layout.simple_spinner_item,
-                                arrayOf("Кондитерская").union(list.map { it.address }).toTypedArray()
-                            )
-                        }
-                        binding.chooseConfectionarySpinner.adapter = spinnerAdapter1
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.dataFlow2.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+                .collectLatest { list ->
+
+                    confecionaries = list
+                    val spinnerAdapter1 = context?.let {
+                        ArrayAdapter(
+                            context!!,
+                            android.R.layout.simple_spinner_item,
+                            arrayOf("Кондитерская").union(list.map { it.address }).toTypedArray()
+                        )
                     }
-            }
-
+                    binding.chooseConfectionarySpinner.adapter = spinnerAdapter1
+                }
         }
 
     }
