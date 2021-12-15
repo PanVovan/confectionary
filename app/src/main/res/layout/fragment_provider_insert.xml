@@ -15,6 +15,18 @@
         android:autofillHints="no"
         android:inputType="text" />
 
+
+    <Button
+        android:id="@+id/add_item_btn"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_margin="40dp"
+        android:text="@string/btn_add_text"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Spinner
         android:id="@+id/choose_ingredientSpinner"
         android:layout_width="match_parent"
@@ -23,16 +35,13 @@
         android:layout_margin="@dimen/inputform_text_margin"
         />
 
-    <Button
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:id="@+id/add_item_btn"
-        android:text="@string/btn_add_text"
-        android:textSize="12sp"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_margin="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    <Spinner
+    android:id="@+id/choose_confectionarySpinner"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@id/choose_ingredientSpinner"
+    android:layout_margin="@dimen/inputform_text_margin"
+    />
 
 
 
