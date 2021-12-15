@@ -34,7 +34,7 @@ class ProviderFragment : Fragment() {
     }
 
     //Меняем для разных таблиц
-    private var tableName = TableNames.TablesEnum.Client.value
+    private var tableName = TableNames.TablesEnum.Provider.value
     //Меняем для разных таблиц
     private var adapter: ProviderAdapter = ProviderAdapter()
 
