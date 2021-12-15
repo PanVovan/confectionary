@@ -2,26 +2,26 @@ package com.confectinary.app.fragments.provider
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.confectinary.app.R
-import com.confectinary.app.databinding.FragmentInsertClientBinding
 import com.confectinary.app.databinding.FragmentProviderInsertBinding
 import com.confectinary.app.db.AppDB
-import com.confectinary.app.db.entity.ClientDb
+import com.confectinary.app.db.entity.ConfectionaryDb
+import com.confectinary.app.db.entity.IngredientTypeDb
 import com.confectinary.app.db.entity.ProviderDb
 import com.confectinary.app.extentions.createFactory
 import com.confectinary.app.fragments.adapter.entity.TableNames
-import com.confectinary.app.fragments.client.ClientViewModel
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class ProviderInsertFragment : Fragment() {
@@ -32,6 +32,11 @@ class ProviderInsertFragment : Fragment() {
 
     //Меняем для разных таблиц
     private var tableName = TableNames.TablesEnum.Provider.value
+
+
+
+    private var ingredientTypes: List<IngredientTypeDb> = emptyList()
+    private var confecionaries: List<ConfectionaryDb> = emptyList()
 
     private val viewModel: ProviderViewModel  by viewModels{
         createFactory(ProviderViewModel(context?.let { AppDB.getDatabase(it) }))
@@ -50,14 +55,17 @@ class ProviderInsertFragment : Fragment() {
                 //Меняем для разных таблиц
                 try {
                     val selected = chooseIngredientSpinner.selectedItem.toString()
-                    val confectionary = viewModel.ingredientTypes.find { it.naming == selected }
+                    val ingredientType = ingredientTypes.find { it.naming == selected }
+                        ?: throw RuntimeException()
+
+                    val selectedConfectionary = chooseConfectionarySpinner.selectedItem.toString()
+                    val confectionary = confecionaries.find { it.address == selectedConfectionary }
                         ?: throw RuntimeException()
 
                     val newItem = ProviderDb(
-                        0,
-                        providerNamingInput.text.toString(),
+                        naming = providerNamingInput.text.toString(),
                     )
-                    viewModel.insert(newItem, confectionary.ingredientTypeId!!)
+                    viewModel.insert(newItem, ingredientType.ingredientTypeId!!, confectionary.confectionaryId!!)
 
 
                     findNavController().navigate(
@@ -71,8 +79,6 @@ class ProviderInsertFragment : Fragment() {
                 }
             }
         }
-
-
         return binding.root
     }
 
@@ -86,14 +92,37 @@ class ProviderInsertFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launch {
-            val spinnerAdapter = context?.let {
-                ArrayAdapter(
-                    context!!,
-                    android.R.layout.simple_spinner_item,
-                    arrayOf("Кондитерская").union(viewModel.ingredientTypes.map { it.naming }).toTypedArray()
-                )
+            viewModel.dataFlow1
+                .flowWithLifecycle(viewLifecycleOwner.lifecycle)
+                .collectLatest { list ->
+
+                    ingredientTypes = list
+                    val spinnerAdapter = context?.let {
+                        ArrayAdapter(
+                            context!!,
+                            android.R.layout.simple_spinner_item,
+                            arrayOf("Тип ингредиента").union(list.map { it.naming }).toTypedArray()
+                        )
+                    }
+                    binding.chooseIngredientSpinner.adapter = spinnerAdapter
+                }
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.dataFlow2.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+                    .collectLatest { list ->
+
+                        confecionaries = list
+                        val spinnerAdapter = context?.let {
+                            ArrayAdapter(
+                                context!!,
+                                android.R.layout.simple_spinner_item,
+                                arrayOf("Кондитерская").union(list.map { it.address }).toTypedArray()
+                            )
+                        }
+                        binding.chooseConfectionarySpinner.adapter = spinnerAdapter
+                    }
             }
-            binding.chooseIngredientSpinner.adapter = spinnerAdapter
+
         }
 
     }

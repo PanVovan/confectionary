@@ -1,13 +1,12 @@
 package com.confectinary.app.fragments.provider
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -17,8 +16,6 @@ import com.confectinary.app.databinding.FragmentViewBinding
 import com.confectinary.app.db.AppDB
 import com.confectinary.app.extentions.createFactory
 import com.confectinary.app.fragments.adapter.entity.TableNames
-import com.confectinary.app.fragments.client.ClientViewModel
-import com.confectinary.app.fragments.client.ClientsAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -32,14 +29,14 @@ class ProviderFragment : Fragment() {
     private val binding get() = _binding!!
 
 
-    private val viewModel: ClientViewModel by viewModels{
-        createFactory(ClientViewModel(context?.let { AppDB.getDatabase(it) }))
+    private val viewModel: ProviderViewModel by viewModels{
+        createFactory(ProviderViewModel(context?.let { AppDB.getDatabase(it) }))
     }
 
     //Меняем для разных таблиц
     private var tableName = TableNames.TablesEnum.Client.value
     //Меняем для разных таблиц
-    private var adapter: ClientsAdapter = ClientsAdapter()
+    private var adapter: ProviderAdapter = ProviderAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,6 +75,6 @@ class ProviderFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.loadClients()
+        viewModel.loadProviders()
     }
 }
