@@ -10,7 +10,7 @@ import com.confectinary.app.R
 import com.confectinary.app.db.entity.ClientDb
 import com.confectinary.app.db.entity.ConfectionaryDb
 
-class ConfectionariesAdapter(private val onclick: (ConfectionaryDb) -> Unit ): RecyclerView.Adapter<ConfectionariesAdapter.ViewHolder>() {
+class ConfectionariesAdapter: RecyclerView.Adapter<ConfectionariesAdapter.ViewHolder>() {
 
     var values = emptyList<ConfectionaryDb>()
 
@@ -32,7 +32,7 @@ class ConfectionariesAdapter(private val onclick: (ConfectionaryDb) -> Unit ): R
             "Доход: $income"
 
         holder.description.text = displayTest
-        holder.deleteBtn.setOnClickListener { onclick(item) }
+        holder.deleteBtn.visibility = View.GONE
     }
 
     override fun getItemCount(): Int = values.size
