@@ -1,7 +1,6 @@
-package com.confectinary.app.fragments.client
+package com.confectinary.app.fragments.ingredient_type
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,31 +10,30 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.confectinary.app.R
-import com.confectinary.app.databinding.FragmentInsertClientBinding
+import com.confectinary.app.databinding.FragmentInsertIngredientTypeBinding
 import com.confectinary.app.db.AppDB
-import com.confectinary.app.db.entity.ClientDb
+import com.confectinary.app.db.entity.IngredientTypeDb
 import com.confectinary.app.extentions.createFactory
 import com.confectinary.app.fragments.adapter.entity.TableNames
 
-
-class InsertClientFragment : Fragment() {
+class IngredientTypeInsertFragment : Fragment() {
 
     //Меняем для разных таблиц
-    private var _binding: FragmentInsertClientBinding? = null
+    private var _binding: FragmentInsertIngredientTypeBinding? = null
     private val binding get() = _binding!!
 
     //Меняем для разных таблиц
-    private var tableName = TableNames.TablesEnum.Client.value
+    private var tableName = TableNames.TablesEnum.IngredientType.value
 
-    private val viewModel: ClientViewModel by viewModels{
-        createFactory(ClientViewModel(context?.let { AppDB.getDatabase(it) }))
+    private val viewModel: IngredientTypeViewModel by viewModels{
+        createFactory(IngredientTypeViewModel(context?.let { AppDB.getDatabase(it) }))
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentInsertClientBinding.inflate(inflater, container, false)
+        _binding = FragmentInsertIngredientTypeBinding.inflate(inflater, container, false)
 
         (activity as AppCompatActivity).supportActionBar?.title = tableName
 
@@ -43,11 +41,8 @@ class InsertClientFragment : Fragment() {
             addItemBtn.setOnClickListener {
                 //Меняем для разных таблиц
                 try {
-                    val newItem = ClientDb(
-                        firstname = clientNameInput.text.toString(),
-                        lastname = clientSurnameInput.text.toString(),
-                        patronymic = clientPatronymicInput.text.toString(),
-                        phoneNumber = clientPhoneNumber.text.toString()
+                    val newItem = IngredientTypeDb(
+                        naming = ingredientTypeNaming.text.toString()
                     )
                     viewModel.insert(newItem)
 

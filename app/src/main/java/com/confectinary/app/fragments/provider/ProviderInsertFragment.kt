@@ -62,7 +62,7 @@ class ProviderInsertFragment : Fragment() {
 
                     findNavController().navigate(
                         //Меняем для разных таблиц
-                        R.id.action_insertClientFragment_to_viewClientsFragment
+                        R.id.action_providerInsertFragment_to_providerFragment
                     )
                 } catch (e: Exception) {
                     Toast

@@ -1,13 +1,12 @@
-package com.confectinary.app.fragments.provider
+package com.confectinary.app.fragments.ingredient_type
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -22,7 +21,7 @@ import com.confectinary.app.fragments.client.ClientsAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class ProviderFragment : Fragment() {
+class IngredientTypeFragment  : Fragment() {
 
     //Меняем для разных таблиц
     private var _binding: FragmentViewBinding? = null
@@ -32,15 +31,12 @@ class ProviderFragment : Fragment() {
     private val binding get() = _binding!!
 
 
-    private val viewModel: ClientViewModel by viewModels{
-        createFactory(ClientViewModel(context?.let { AppDB.getDatabase(it) }))
+    private val viewModel: IngredientTypeViewModel by viewModels{
+        createFactory(IngredientTypeViewModel(context?.let { AppDB.getDatabase(it) }))
     }
 
     //Меняем для разных таблиц
     private var tableName = TableNames.TablesEnum.Client.value
-    //Меняем для разных таблиц
-    private var adapter: ClientsAdapter = ClientsAdapter()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -62,6 +58,9 @@ class ProviderFragment : Fragment() {
         return binding.root
     }
 
+    //Меняем для разных таблиц
+    private var adapter: IngredientTypeAdapter = IngredientTypeAdapter()
+
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -78,6 +77,6 @@ class ProviderFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.loadClients()
+        viewModel.loadIngredientTypes()
     }
 }

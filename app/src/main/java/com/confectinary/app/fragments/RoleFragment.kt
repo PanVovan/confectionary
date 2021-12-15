@@ -68,6 +68,8 @@ class RoleFragment : Fragment() {
                 findNavController().navigate(R.id.action_roleFragment_to_viewManagerFragment)
             TableNames.TablesEnum.Confectioner.value ->
                 findNavController().navigate(R.id.action_roleFragment_to_viewConfectionersFragment)
+            TableNames.TablesEnum.Provider.value ->
+                findNavController().navigate(R.id.action_providerInsertFragment_to_providerFragment)
         }
     }
 

@@ -22,6 +22,12 @@
         <action
             android:id="@+id/action_roleFragment_to_viewConfectionersFragment"
             app:destination="@id/viewConfectionersFragment" />
+        <action
+            android:id="@+id/action_roleFragment_to_providerFragment"
+            app:destination="@id/providerFragment" />
+        <action
+            android:id="@+id/action_roleFragment_to_ingredientTypeFragment"
+            app:destination="@id/ingredientTypeFragment" />
     </fragment>
 
     <fragment
@@ -100,6 +106,44 @@
             app:destination="@id/viewConfectionersFragment"
             app:popUpTo="@id/roleFragment"
             app:popUpToInclusive="false"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/providerFragment"
+        android:name="com.confectinary.app.fragments.provider.ProviderFragment"
+        android:label="ProviderFragment" >
+        <action
+            android:id="@+id/action_providerFragment_to_providerInsertFragment"
+            app:destination="@id/providerInsertFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/providerInsertFragment"
+        android:name="com.confectinary.app.fragments.provider.ProviderInsertFragment"
+        android:label="ProviderInsertFragment" >
+        <action
+            android:id="@+id/action_providerInsertFragment_to_providerFragment"
+            app:destination="@id/providerFragment"
+            app:popUpTo="@id/roleFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ingredientTypeFragment"
+        android:name="com.confectinary.app.fragments.ingredient_type.IngredientTypeFragment"
+        android:label="IngredientTypeFragment" >
+        <action
+            android:id="@+id/action_ingredientTypeFragment_to_ingredientTypeInsertFragment"
+            app:destination="@id/ingredientTypeInsertFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ingredientTypeInsertFragment"
+        android:name="com.confectinary.app.fragments.ingredient_type.IngredientTypeInsertFragment"
+        android:label="IngredientTypeInsertFragment" >
+        <action
+            android:id="@+id/action_ingredientTypeInsertFragment_to_ingredientTypeFragment"
+            app:destination="@id/ingredientTypeFragment"
+            app:popUpTo="@id/roleFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 
 
