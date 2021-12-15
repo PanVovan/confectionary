@@ -50,7 +50,7 @@ class IngredientTypeFragment  : Fragment() {
             addItem.setOnClickListener {
                 findNavController().navigate(
                     //Меняем для разных таблиц
-                    R.id.action_providerFragment_to_providerInsertFragment
+                    R.id.action_ingredientTypeFragment_to_ingredientTypeInsertFragment
                 )
             }
         }

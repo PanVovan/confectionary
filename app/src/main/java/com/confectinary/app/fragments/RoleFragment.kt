@@ -69,7 +69,9 @@ class RoleFragment : Fragment() {
             TableNames.TablesEnum.Confectioner.value ->
                 findNavController().navigate(R.id.action_roleFragment_to_viewConfectionersFragment)
             TableNames.TablesEnum.Provider.value ->
-                findNavController().navigate(R.id.action_providerInsertFragment_to_providerFragment)
+                findNavController().navigate(R.id.action_roleFragment_to_providerFragment)
+            TableNames.TablesEnum.IngredientType.value ->
+                findNavController().navigate(R.id.action_roleFragment_to_ingredientTypeFragment)
         }
     }
 

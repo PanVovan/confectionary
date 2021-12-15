@@ -48,7 +48,7 @@ class IngredientTypeInsertFragment : Fragment() {
 
                     findNavController().navigate(
                         //Меняем для разных таблиц
-                        R.id.action_insertClientFragment_to_viewClientsFragment
+                        R.id.action_ingredientTypeInsertFragment_to_ingredientTypeFragment
                     )
                 } catch (e: Exception) {
                     Toast
