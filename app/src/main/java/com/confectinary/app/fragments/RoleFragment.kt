@@ -78,14 +78,4 @@ class RoleFragment : Fragment() {
         }
     }
 
-    companion object {
-
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RoleFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
-    }
 }
