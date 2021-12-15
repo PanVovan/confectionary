@@ -43,10 +43,9 @@ class RoleFragment : Fragment() {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
                     when (position) {
-                        0 -> {
-                            tableNamesAdapter.values = TableNames.adminTableNames
-                        }
-                        1 -> tableNamesAdapter.values = TableNames.clientTableNames
+                        0 -> tableNamesAdapter.values = TableNames.adminTableNames
+                        1 -> tableNamesAdapter.values = TableNames.confectionerTableNames
+                        2 -> tableNamesAdapter.values = TableNames.clientTableNames
                         else -> tableNamesAdapter.values = TableNames.adminTableNames
                     }
                     tableNamesAdapter.notifyDataSetChanged()

@@ -14,12 +14,18 @@ class TableNames {
             TablesEnum.Pastry.value,
             TablesEnum.IngredientType.value,
             TablesEnum.Order.value,
-            TablesEnum.DiscountCards.value
+            //TablesEnum.DiscountCards.value
         )
 
         val clientTableNames = listOf(
             TablesEnum.Order.value,
-            TablesEnum.DiscountCards.value
+            TablesEnum.Pastry.value
+        )
+
+        val confectionerTableNames = listOf(
+            TablesEnum.Order.value,
+            TablesEnum.Pastry.value,
+            TablesEnum.IngredientType.value
         )
 
         val TABLE_NAME_PARAM = "TABLE_NAME"
@@ -35,7 +41,7 @@ class TableNames {
         Pastry("Изделия"),
         IngredientType("Ингредиенты"),
         Order("Заказы"),
-        DiscountCards("Скидочные карты");
+        //DiscountCards("Скидочные карты");
 
 
     }

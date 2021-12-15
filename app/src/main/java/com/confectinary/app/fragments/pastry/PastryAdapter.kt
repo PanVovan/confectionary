@@ -8,13 +8,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.ColumnInfo
 import com.confectinary.app.R
+import com.confectinary.app.db.entity.ConfectionerDb
 import com.confectinary.app.db.entity.ManagerDb
+import com.confectinary.app.db.entity.OrderDb
 import com.confectinary.app.db.entity.PastryDb
 import com.confectinary.app.fragments.manager.ManagersAdapter
 
 class PastryAdapter : RecyclerView.Adapter<PastryAdapter.ViewHolder>() {
 
     var values = emptyList<PastryDb>()
+    var orders = emptyList<OrderDb>()
+    var confectioners = emptyList<ConfectionerDb>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -31,11 +35,15 @@ class PastryAdapter : RecyclerView.Adapter<PastryAdapter.ViewHolder>() {
         val price = item.price
         val naming = item.naming
         val manufactured = item.manufactured
+        val order = orders.filter { it.orderId == item.orderId }.getOrNull(0)
 
-
-        val displayTest = "Наименование: $naming\n" +
+        var displayTest = "Наименование: $naming\n" +
                 "Стоимость: $price\n" +
                 "Дата изготовления: $manufactured"
+
+        order?.let {
+            displayTest = displayTest.plus("\nЗаказ: ${order.description}")
+        }
 
         holder.description.text = displayTest
         holder.deleteBtn.visibility = View.GONE

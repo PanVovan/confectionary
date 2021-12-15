@@ -22,6 +22,7 @@ class PastryViewModel(
     private val _dataFlow2 = MutableSharedFlow<List<OrderDb>>()
     val dataFlow2 = _dataFlow2.asSharedFlow()
 
+
     fun loadPastries() {
         viewModelScope.launch {
             _dataFlow.emit(db?.getPastryDao()?.getPastries() ?: emptyList())

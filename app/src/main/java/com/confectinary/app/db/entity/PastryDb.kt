@@ -24,5 +24,5 @@ data class PastryDb (
     val manufactured: String,
 
     @ColumnInfo(name = "order_id")
-    val orderId: Long,
+    val orderId: Long
 )

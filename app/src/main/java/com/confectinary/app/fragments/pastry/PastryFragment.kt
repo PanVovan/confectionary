@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -13,8 +14,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.confectinary.app.R
 import com.confectinary.app.databinding.FragmentViewBinding
+import com.confectinary.app.databinding.FragmentViewPastriesBinding
 import com.confectinary.app.db.AppDB
 import com.confectinary.app.db.entity.ManagerDb
+import com.confectinary.app.db.entity.OrderDb
 import com.confectinary.app.db.entity.PastryDb
 import com.confectinary.app.extentions.createFactory
 import com.confectinary.app.fragments.adapter.entity.TableNames
@@ -24,8 +27,8 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class PastryFragment : Fragment() {
-
-    private var _binding: FragmentViewBinding? = null
+    //FragmentViewPastriesBinding
+    private var _binding: FragmentViewPastriesBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -44,7 +47,7 @@ class PastryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentViewBinding.inflate(inflater, container, false)
+        _binding = FragmentViewPastriesBinding.inflate(inflater, container, false)
 
 
         with(binding) {
@@ -55,12 +58,67 @@ class PastryFragment : Fragment() {
                     R.id.action_pastryFragment_to_pastryInsertFragment
                 )
             }
+
+            searchBtn.setOnClickListener {
+                when (selectSearchFieldSpinner.selectedItem.toString()){
+                    "Наименование" -> {
+                        val filter = searchInput.text.toString()
+                        if(filter != "") {
+                            showingPastries =
+                                allPastries?.filter {
+                                    it.naming.contains(
+                                        filter,
+                                        ignoreCase = true
+                                    )
+                                }
+                            updateAdapter(showingPastries)
+                        } else
+                            updateAdapter(allPastries)
+                    }
+                    "Цена" -> {
+                        val filter = searchInput.text.toString().toIntOrNull()
+                        if(filter != null) {
+                            showingPastries =
+                                allPastries?.filter {
+                                    it.price >= filter
+                                }
+                            updateAdapter(showingPastries)
+                        }  else
+                            updateAdapter(allPastries)
+                    }
+                    "Описание" -> {
+                        val filter = searchInput.text.toString()
+                        if(filter != "") {
+                            try {
+                                showingPastries =
+                                    allPastries?.filter {
+                                        val order =
+                                            orders!!.firstOrNull { i -> i.orderId == it.orderId }
+                                        order!!.description.contains(filter, ignoreCase = true)
+                                    }
+                                updateAdapter(showingPastries)
+                            } catch (e: Exception){}
+                        } else
+                            updateAdapter(allPastries)
+                    }
+                }
+            }
         }
 
         return binding.root
     }
 
+    private var allPastries: List<PastryDb>? = null
+    private var orders: List<OrderDb>? = null
+    private var showingPastries: List<PastryDb>? = null
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateAdapter(values: List<PastryDb>?){
+        values?.let {
+            adapter.values = values
+            adapter.notifyDataSetChanged()
+        }
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -70,7 +128,18 @@ class PastryFragment : Fragment() {
             viewModel.dataFlow
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle)
                 .collectLatest {
-                    adapter.values = it
+                    allPastries = it
+                    showingPastries = allPastries
+                    updateAdapter(showingPastries)
+                }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.dataFlow2
+                .flowWithLifecycle(viewLifecycleOwner.lifecycle)
+                .collectLatest {
+                    adapter.orders = it
+                    orders = it
                     adapter.notifyDataSetChanged()
                 }
         }

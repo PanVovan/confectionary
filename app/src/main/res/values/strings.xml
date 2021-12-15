@@ -11,8 +11,16 @@
     <string name="confectionary_address">Адрес</string>
     <string name="confectionary_income">Доход</string>
     <string name="btn_add_text">Добавить</string>
+
     <string-array name="roles">
         <item>Админ</item>
+        <item>Кондитер</item>
         <item>Клиент</item>
+    </string-array>
+
+    <string-array name="filters">
+        <item>Наименование</item>
+        <item>Минимальная цена</item>
+        <item>Описание</item>
     </string-array>
 </resources>
