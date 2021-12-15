@@ -68,7 +68,7 @@ class InsertOrderFragment : Fragment() {
 
                     findNavController().navigate(
                         //Меняем для разных таблиц
-                        R.id.action_inputManagerFragment_to_viewManagerFragment
+                        R.id.action_insertOrderFragment_to_orderFragment
                     )
                 } catch (e: Exception) {
                     Toast
@@ -100,7 +100,7 @@ class InsertOrderFragment : Fragment() {
                         ArrayAdapter(
                             context!!,
                             android.R.layout.simple_spinner_item,
-                            arrayOf("Заказ").union(list.map { it.lastname }).toTypedArray()
+                            arrayOf("Клиент").union(list.map { it.lastname }).toTypedArray()
                         )
                     }
                     binding.chooseClientSpinner.adapter = spinnerAdapter

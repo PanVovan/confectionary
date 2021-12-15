@@ -2,6 +2,7 @@ package com.confectinary.app.fragments.pastry
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,7 +56,7 @@ class PastryInsertFragment : Fragment() {
                 try {
                     val selectedIngredient1 = chooseIngredientSpinner1.selectedItem.toString()
                     val selectedIngredient2 = chooseIngredientSpinner2.selectedItem.toString()
-                    val selectedOrder = chooseIngredientSpinner2.selectedItem.toString()
+                    val selectedOrder = chooseOrderSpinner.selectedItem.toString()
 
                     val ingredientType1 = ingredientTypes?.find { it.naming == selectedIngredient1 }?.ingredientTypeId
                     var ingredientType2 = ingredientTypes?.find { it.naming == selectedIngredient2 }?.ingredientTypeId
@@ -76,12 +77,13 @@ class PastryInsertFragment : Fragment() {
 
                     findNavController().navigate(
                         //Меняем для разных таблиц
-                        R.id.action_pastryFragment_to_pastryInsertFragment
+                        R.id.action_pastryInsertFragment_to_pastryFragment
                     )
                 } catch (e: Exception) {
                     Toast
                         .makeText(context, "Данные введены некорректно!", Toast.LENGTH_SHORT)
                         .show()
+                    e.printStackTrace()
                 }
             }
         }

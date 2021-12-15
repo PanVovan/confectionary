@@ -36,7 +36,7 @@ class OrderFragment : Fragment() {
     }
 
     //Меняем для разных таблиц
-    private var tableName = TableNames.TablesEnum.Manager.value
+    private var tableName = TableNames.TablesEnum.Order.value
     //Меняем для разных таблиц
     private var adapter: OrdersAdapter = OrdersAdapter()
 
@@ -52,7 +52,7 @@ class OrderFragment : Fragment() {
             addItem.setOnClickListener {
                 findNavController().navigate(
                     //Меняем для разных таблиц
-                    R.id.action_viewManagerFragment_to_inputManagerFragment
+                    R.id.action_orderFragment_to_insertOrderFragment
                 )
             }
         }
